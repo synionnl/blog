@@ -56,7 +56,7 @@ jobs:
             az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER/$STORAGE_BUCKET" -s "./main/dist"      
 
       - name: Prune feature branches
-        uses: synionnl/prune-features@v0.3
+        uses: synionnl/prune-features@v0.4
         with:
           storage-account: "$STORAGE_ACCOUNT"
           storage-container: "$STORAGE_CONTAINER"

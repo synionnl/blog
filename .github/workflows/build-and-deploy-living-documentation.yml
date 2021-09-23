@@ -12,7 +12,7 @@ jobs:
       STORAGE_CONTAINER: docs-synion-nl
       CDN_PROFILE: synion-cdn
       CDN_ENDPOINT: docs-synion-www
-      STORAGE_BUCKET: synion
+      STORAGE_BUCKET: blog
 
     runs-on: ubuntu-latest
 

@@ -35,7 +35,7 @@ jobs:
         run: |
           data="${{ steps.get-branches.outputs.data }}"
           for branch in $(echo "${data}" | jq -r '.[].name'); do
-            echo ${branch}
+            echo "${branch}"
           done
       
 

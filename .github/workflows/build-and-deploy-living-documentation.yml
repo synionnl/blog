@@ -25,12 +25,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: ${{ steps.get-branches.outputs.data }}
-
       - run: |
           for branch in ${{ fromJson(steps.get-branches.outputs.data) }}
           do
-            echo $branch
+            echo $branch.name
           done
 
       # - name: Checkout git repo

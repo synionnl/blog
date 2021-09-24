@@ -26,10 +26,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - run: |
-          branches="${{ fromJson(steps.get-branches.outputs.data) }}" | jq '.[].name';
+          branches="${{ steps.get-branches.outputs.data }}" | jq '.[].name';
           for b in $branches
           do
-            echo ""
+            echo "$b"
           done
 
       # - name: Checkout git repo

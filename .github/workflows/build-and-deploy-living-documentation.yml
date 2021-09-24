@@ -47,11 +47,17 @@ jobs:
           done
 
           git fetch;
-          branches="${{ steps.get-branches.outputs.data }}" | jq '.[].name';
-          for b in $branches;
+          branches="${{ fromJson(steps.get-branches.outputs.data }}") | jq '.[].name';
+
+          # get length of branches array
+          length=${#branches[@]}
+
+          echo "length: ${length}";
+
+          for b in ${branches};
           do
-            echo "checking out $b";
-            git checkout "$b";
+            echo "checking out ${b}";
+            git checkout "${b}";
             md-docs;
           done
 

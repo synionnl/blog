@@ -55,7 +55,10 @@ jobs:
       - name: Build website
         id: build-website
         working-directory: main
-        run: md-docs          
+        run: |
+          md-docs
+          JSON=$(cat ./dist/branches.json)
+          echo "::set-output name=branches::${JSON//'%'/'%25'}"
 
       - name: Upload to blob storage
         uses: azure/CLI@v1

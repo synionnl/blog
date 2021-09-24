@@ -17,68 +17,84 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout git repo
-        uses: actions/checkout@v2
+      - uses: octokit/request-action@v2.x
+        id: get-branches
         with:
-          path: main
+          route: GET /repos/{repository}/branches
+          repository: ${{ github.repository }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout md-docs repo
-        uses: actions/checkout@v2
-        with:
-          repository: synionnl/living-documentation
-          path: md-docs
+      - run: ${{ fromJson(steps.get-branches.outputs.data) }}
 
-      - name: Azure login
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
+      - run: |
+          for branch in ${{ fromJson(steps.get-branches.outputs.data) }}
+          do
+            echo $branch
+          done
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '14.x'
+      # - name: Checkout git repo
+      #   uses: actions/checkout@v2
+      #   with:
+      #     path: main
 
-      - name: Install md-docs
-        working-directory: md-docs
-        run: |
-          npm install
-          npm link
+      # - name: Checkout md-docs repo
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: synionnl/living-documentation
+      #     path: md-docs
 
-      - name: Build website
-        id: build-website
-        working-directory: main
-        run: |
-          git fetch
-          git checkout main
-          md-docs
-          git checkout "feature/test"
-          md-docs
-          JSON=$(cat ./dist/branches.json)
-          echo "::set-output name=branches::${JSON//'%'/'%25'}"
+      # - name: Azure login
+      #   uses: azure/login@v1
+      #   with:
+      #     creds: ${{ secrets.AZURE_CREDENTIALS }}
 
-      - name: Upload to blob storage
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.0.72
-          inlineScript: |
-            az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER/$STORAGE_BUCKET" -s "./main/dist"      
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v2
+      #   with:
+      #     node-version: '14.x'
 
-      - name: Prune feature branches
-        uses: synionnl/prune-features@main
-        with:
-          storage-account: ${{ env.STORAGE_ACCOUNT }}
-          storage-container: ${{ env.STORAGE_CONTAINER }}
-          bucket: ${{ env.STORAGE_BUCKET }}
-          branches: ${{ steps.build-website.outputs.branches }}
+      # - name: Install md-docs
+      #   working-directory: md-docs
+      #   run: |
+      #     npm install
+      #     npm link
+
+      # - name: Build website
+      #   id: build-website
+      #   working-directory: main
+      #   run: |
+      #     git fetch
+      #     git checkout main
+      #     md-docs
+      #     git checkout "feature/test"
+      #     md-docs
+      #     JSON=$(cat ./dist/branches.json)
+      #     echo "::set-output name=branches::${JSON//'%'/'%25'}"
+
+      # - name: Upload to blob storage
+      #   uses: azure/CLI@v1
+      #   with:
+      #     azcliversion: 2.0.72
+      #     inlineScript: |
+      #       az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER/$STORAGE_BUCKET" -s "./main/dist"      
+
+      # - name: Prune feature branches
+      #   uses: synionnl/prune-features@main
+      #   with:
+      #     storage-account: ${{ env.STORAGE_ACCOUNT }}
+      #     storage-container: ${{ env.STORAGE_CONTAINER }}
+      #     bucket: ${{ env.STORAGE_BUCKET }}
+      #     branches: ${{ steps.build-website.outputs.branches }}
       
-      - name: Purge CDN endpoint
-        uses: azure/CLI@v1
-        with:
-          azcliversion: 2.0.72
-          inlineScript: |
-            az cdn endpoint purge --content-paths  "/$STORAGE_BUCKET/*" --profile-name "$CDN_PROFILE" --name "$CDN_ENDPOINT" --resource-group "$RESOURCE_GROUP"
+      # - name: Purge CDN endpoint
+      #   uses: azure/CLI@v1
+      #   with:
+      #     azcliversion: 2.0.72
+      #     inlineScript: |
+      #       az cdn endpoint purge --content-paths  "/$STORAGE_BUCKET/*" --profile-name "$CDN_PROFILE" --name "$CDN_ENDPOINT" --resource-group "$RESOURCE_GROUP"
 
-      - name: Azure logout
-        if: always()
-        run: |
-          az logout
+      # - name: Azure logout
+      #   if: always()
+      #   run: |
+      #     az logout

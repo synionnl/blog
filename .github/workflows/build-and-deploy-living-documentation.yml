@@ -33,14 +33,9 @@ jobs:
 
       - working-directory: main
         run: |
-          data="${{ steps.get-branches.outputs.data }}";
-          data="${data//$'\n'/'%0A'}";
-          data="${data//$'\r'/'%0D'}";
-
-          git fetch;
-
-          for branch in $(echo "$data" | jq -r '.[].name'); do
-            git checkout "$branch";
+          data="${{ steps.get-branches.outputs.data }}"
+          for branch in $(echo "${data}" | jq -r '.[].name'); do
+            echo ${branch}
           done
       
 

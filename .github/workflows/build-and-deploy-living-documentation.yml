@@ -50,7 +50,7 @@ jobs:
         run: |
           md-docs
           JSON=$(cat ./dist/branches.json)
-          echo "::set-output name=branches::${JSON}"
+          echo "::set-output name=branches::${JSON//'%'/'%25'}"
 
       - run: echo ${{ fromJson(steps.build-website.outputs.branches) }}
 
@@ -66,7 +66,7 @@ jobs:
       - name: Prune feature branches
         uses: synionnl/prune-features@main
         with:
-          branches: ${{ fromJson(steps.build-website.outputs.branches) }}
+          branches: ${{ steps.build-website.outputs.branches }}
           storage-account: "$STORAGE_ACCOUNT"
           storage-container: "$STORAGE_CONTAINER"
           bucket: "$STORAGE_BUCKET"

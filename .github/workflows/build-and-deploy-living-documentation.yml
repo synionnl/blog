@@ -48,9 +48,10 @@ jobs:
         id: build-website
         working-directory: main
         run: |
+          git fetch
           git checkout main
           md-docs
-          git checkout feature/test
+          git checkout "feature/test"
           md-docs
           JSON=$(cat ./dist/branches.json)
           echo "::set-output name=branches::${JSON//'%'/'%25'}"

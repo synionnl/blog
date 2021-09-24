@@ -33,8 +33,11 @@ jobs:
 
       - working-directory: main
         run: |
-          echo "${{ fromJSON(steps.get-branches.outputs.data) }}"
-          
+          branches="${{ fromJSON(steps.get-branches.outputs.data) }}"
+          for branch in $(echo "${branches}" | jq -r '.[].name'); do
+            echo "${branch}""
+          done
+
       # - name: Checkout md-docs repo
       #   uses: actions/checkout@v2
       #   with:

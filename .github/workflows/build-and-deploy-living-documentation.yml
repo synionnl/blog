@@ -33,35 +33,11 @@ jobs:
 
       - working-directory: main
         run: |
-          #!/bin/bash
-          ## declare an array variable
-          declare -a array=("one" "two" "three")
-
-          # get length of an array
-          arraylength=${#array[@]}
-
-          # use for loop to read all values and indexes
-          for (( i=0; i<${arraylength}; i++ ));
-          do
-            echo "index: $i, value: ${array[$i]}"
-          done
-
           git fetch;
 
-          readArray -t branches < ("${{ steps.get-branches.outputs.data }}" | jq -r '.[].name');
-
-          # get length of branches array
-          length=${#branches[@]}
-
-          echo "length: ${length}";
-
-          for b in ${branches};
-          do
-            echo "checking out ${b}";
-            git checkout "${b}";
-            md-docs;
+          for branch in $(echo "${{ steps.get-branches.outputs.data }}" | jq -r '.[].name'); do
+            git checkout "${branch}"
           done
-
       
 
       # - name: Checkout md-docs repo

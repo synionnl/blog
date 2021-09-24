@@ -52,7 +52,9 @@ jobs:
           JSON=$(cat ./dist/branches.json)
           echo "::set-output name=branches::${JSON}"
 
-      - run: echo ${{ steps.build-website.outputs.branches }}
+      - run: echo ${{ fromJson(steps.build-website.outputs.branches) }}
+
+      - run: echo ${{ fromJson(steps.build-website.outputs.branches)[0].name }}
 
       # - name: Upload to blob storage
       #   uses: azure/CLI@v1

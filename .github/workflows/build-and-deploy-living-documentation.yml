@@ -47,8 +47,8 @@ jobs:
           done
 
           git fetch;
-          
-          branches="${{ fromJson(steps.get-branches.outputs.data) }}" | jq '.[].name';
+
+          readArray -t branches < ("${{ steps.get-branches.outputs.data }}" | jq -r '.[].name');
 
           # get length of branches array
           length=${#branches[@]}

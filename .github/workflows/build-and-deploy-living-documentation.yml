@@ -52,10 +52,6 @@ jobs:
           JSON=$(cat ./dist/branches.json)
           echo "::set-output name=branches::${JSON//'%'/'%25'}"
 
-      - run: echo ${{ fromJson(steps.build-website.outputs.branches) }}
-
-      - run: echo ${{ fromJson(steps.build-website.outputs.branches)[0].name }}
-
       # - name: Upload to blob storage
       #   uses: azure/CLI@v1
       #   with:
@@ -66,10 +62,10 @@ jobs:
       - name: Prune feature branches
         uses: synionnl/prune-features@main
         with:
+          storage-account: ${{ env.STORAGE_ACCOUNT }}
+          storage-container: ${{ env.STORAGE_CONTAINER }}
+          bucket: ${{ env.STORAGE_BUCKET }}
           branches: ${{ steps.build-website.outputs.branches }}
-          storage-account: "$STORAGE_ACCOUNT"
-          storage-container: "$STORAGE_CONTAINER"
-          bucket: "$STORAGE_BUCKET"
       
       # - name: Purge CDN endpoint
       #   uses: azure/CLI@v1

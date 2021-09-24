@@ -17,6 +17,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+
+      - name: Checkout git repo
+        uses: actions/checkout@v2
+        with:
+          path: main
+
       - uses: octokit/request-action@v2.x
         id: get-branches
         with:
@@ -25,17 +31,17 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - run: |
-          branches="${{ steps.get-branches.outputs.data }}" | jq '.[].name';
+      - working-directory: md-docs
+        run: |
+          git fetch
+          branches="${{ steps.get-branches.outputs.data }}" | jq '.[].name'
           for b in $branches
           do
-            echo "$b"
+            git checkout "$b"
+            md-docs
           done
 
-      # - name: Checkout git repo
-      #   uses: actions/checkout@v2
-      #   with:
-      #     path: main
+      
 
       # - name: Checkout md-docs repo
       #   uses: actions/checkout@v2

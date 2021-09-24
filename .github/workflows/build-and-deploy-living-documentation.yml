@@ -31,14 +31,28 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - working-directory: md-docs
+      - working-directory: main
         run: |
-          git fetch
-          branches="${{ steps.get-branches.outputs.data }}" | jq '.[].name'
-          for b in $branches
+          #!/bin/bash
+          ## declare an array variable
+          declare -a array=("one" "two" "three")
+
+          # get length of an array
+          arraylength=${#array[@]}
+
+          # use for loop to read all values and indexes
+          for (( i=0; i<${arraylength}; i++ ));
           do
-            git checkout "$b"
-            md-docs
+            echo "index: $i, value: ${array[$i]}"
+          done
+
+          git fetch;
+          branches="${{ steps.get-branches.outputs.data }}" | jq '.[].name';
+          for b in $branches;
+          do
+            echo "checking out $b";
+            git checkout "$b";
+            md-docs;
           done
 
       

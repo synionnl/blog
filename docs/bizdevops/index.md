@@ -2,7 +2,7 @@
 
 > A lot of companies are struggling in delivering technical products which meet business expectations. With BizDevOps the goal is to restore the natural order: technical product development driven by business intent.
 
-![BizDevOps](bizdevops.png)
+![BizDevOps](bizdevops.png?align=center)
 
 ## WHAT vs HOW
 
@@ -20,7 +20,7 @@ The business is organized in business domains. A business domain is a standalone
 
 > A domain delivers one or more products which are consumed via an interface and realized with business processes. Business processes use data to operate and trigger applications to fulfill use cases.
 
-![anatomy of a business domain](business-domain.svg)
+![anatomy of a business domain](business-domain.svg?align=right)
 
 
 With living documentation the business owns its business interfaces and therefore is responsible for the entire lifecycle. These interfaces are the digital assets which are used by the engineers to generate code:

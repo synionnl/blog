@@ -82,6 +82,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az az config set extension.use_dynamic_install=yes_without_prompt
             az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER/$STORAGE_BUCKET" -s "./main/dist"
 
       # - name: Prune feature branches

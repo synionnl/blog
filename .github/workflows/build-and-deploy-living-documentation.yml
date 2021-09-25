@@ -64,7 +64,7 @@ jobs:
         working-directory: main
         run: |
           git fetch
-          for branch in $(echo "${{ steps.build-website.outputs.branches }}" | jq -r 'sort_by(.path) | .[].name')
+          for branch in $(echo "${{ fromJson(steps.build-website.outputs.branches) }}" | jq -r 'sort_by(.path) | .[].name')
           do
               git checkout echo "$branch"
               md-docs

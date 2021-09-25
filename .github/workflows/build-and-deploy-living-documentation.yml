@@ -75,14 +75,12 @@ jobs:
       - name: Delete bucket
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.0.72
           inlineScript: |
             az storage blob directory delete -c "$STORAGE_CONTAINER" -d "$STORAGE_BUCKET" --account-name "$STORAGE_ACCOUNT" --recursive
-
+            
       - name: Upload to blob storage
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.0.72
           inlineScript: |
             az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER/$STORAGE_BUCKET" -s "./main/dist"
 
@@ -97,7 +95,6 @@ jobs:
       - name: Purge CDN endpoint
         uses: azure/CLI@v1
         with:
-          azcliversion: 2.0.72
           inlineScript: |
             az cdn endpoint purge --content-paths  "/$STORAGE_BUCKET/*" --profile-name "$CDN_PROFILE" --name "$CDN_ENDPOINT" --resource-group "$RESOURCE_GROUP"
 

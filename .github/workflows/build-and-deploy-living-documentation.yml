@@ -69,7 +69,7 @@ jobs:
           git fetch
           for B in $(echo $BRANCHES | jq -r 'sort_by(.path) | .[].name')
           do
-              git checkout echo "$B"
+              git checkout "$B"
               md-docs
           done
         env:

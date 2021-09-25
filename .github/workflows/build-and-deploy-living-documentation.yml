@@ -82,16 +82,8 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az config set extension.use_dynamic_install=yes_without_prompt
+            az extension add --name azure-devops
             az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER/$STORAGE_BUCKET" -s "./main/dist"
-
-      # - name: Prune feature branches
-      #   uses: synionnl/prune-features@main
-      #   with:
-      #     storage-account: ${{ env.STORAGE_ACCOUNT }}
-      #     storage-container: ${{ env.STORAGE_CONTAINER }}
-      #     bucket: ${{ env.STORAGE_BUCKET }}
-      #     branches: ${{ steps.build-website.outputs.branches }}
       
       - name: Purge CDN endpoint
         uses: azure/CLI@v1

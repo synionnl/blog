@@ -76,13 +76,13 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az config set extension.use_dynamic_install=yes_without_prompt
             az storage blob directory delete -c "$STORAGE_CONTAINER" -d "$STORAGE_BUCKET" --account-name "$STORAGE_ACCOUNT" --recursive
             
       - name: Upload to blob storage
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az extension add --name azure-devops
             az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER/$STORAGE_BUCKET" -s "./main/dist"
       
       - name: Purge CDN endpoint

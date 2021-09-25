@@ -57,18 +57,23 @@ jobs:
         working-directory: main
         run: |
           md-docs
-          JSON=$(cat ./dist/branches.json)
-          echo "::set-output name=branches::${JSON//'%'/'%25'}"
+          BRANCHES=$(cat ./dist/branches.json)
+          BRANCHES="${BRANCHES//'%'/'%25'}"
+          BRANCHES="${BRANCHES//$'\n'/'%0A'}"
+          BRANCHES="${BRANCHES//$'\r'/'%0D'}"
+          echo "::set-output name=branches::$BRANCHES"
 
       - name: Build websites
         working-directory: main
         run: |
           git fetch
-          for branch in $(echo "${{ fromJson(steps.build-website.outputs.branches) }}" | jq -r 'sort_by(.path) | .[].name')
+          for B in $(echo $BRANCHES | jq -r 'sort_by(.path) | .[].name')
           do
-              git checkout echo "$branch"
+              git checkout echo "$B"
               md-docs
           done
+        env:
+          BRANCHES: ${{ steps.build-website.outputs.branches}}
 
       - name: Upload to blob storage
         uses: azure/CLI@v1

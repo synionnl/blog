@@ -13,7 +13,7 @@ paths:
     post:
       tags:
         - questions
-      summary: Starts the answer question process
+      summary: Starts the answer question process.
       description: |
         
       operationId: RegisterQuestion
@@ -30,7 +30,7 @@ paths:
     get:
       tags:
         - questions
-      summary: Gets a list of answer question processes
+      summary: Gets a list of answer question processes.
       operationId: GetQuestions
       parameters:
         - $ref: "#/components/parameters/offset"
@@ -43,16 +43,20 @@ paths:
               schema:
                 $ref: "#/components/schemas/questions"
           
-  /api/questions/{question_id}:
+  /api/questions/{question_id}/end:
     parameters:
       - $ref: "#/components/parameters/question_id"
-    delete:
+    put:
       tags:
         - questions
-      summary: Ends the answer question process
-      description: |
-        
+      summary: Ends the answer question process.
       operationId: StopAnsweringQuestion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/end_question"
       responses:
         202:
           description: Accepted
@@ -63,7 +67,7 @@ paths:
     get:
       tags:
         - answer question tasks
-      summary: Gets an answer question task
+      summary: Gets an answer question task.
       operationId: GetAnswerQuestionTask
       responses:
         200:
@@ -74,10 +78,14 @@ paths:
                 $ref: "#/components/schemas/answer_question_task"
         404:
           description: Task not found
+
+  /api/questions/answer_question_tasks/{task_id}/answer:
+    parameters:        
+      - $ref: "#/components/parameters/task_id"
     put:
       tags:
         - answer question tasks
-      summary: Completes the answer question task
+      summary: Completes the answer question task by answering the question.
       operationId: CompleteAnswerQuestionTask
       requestBody:
         required: true
@@ -97,7 +105,7 @@ paths:
     get:
       tags:
         - review answer tasks
-      summary: Gets a review answer task
+      summary: Gets a review answer task.
       operationId: GetReviewAnswerTask
       responses:
         200:
@@ -108,21 +116,41 @@ paths:
                 $ref: "#/components/schemas/review_answer_task"
         404:
           description: Task not found
+
+  /api/questions/review_answer_tasks/{task_id}/accept:
+    parameters:        
+      - $ref: "#/components/parameters/task_id"
     put:
       tags:
         - review answer tasks
-      summary: Completes the review answer task
+      summary: Completes the review answer task by accepting the answer.
       operationId: CompleteReviewAnswerTask
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              oneOf:
-                - $ref: "#/components/schemas/accept_answer"
-                - $ref: "#/components/schemas/reject_answer"
-              discriminator:
-                propertyName: command_type
+              $ref: "#/components/schemas/accept_answer"
+      responses:
+        202:
+          description: Accepted
+        404:
+          description: Task not found
+
+  /api/questions/review_answer_tasks/{task_id}/reject:
+    parameters:        
+      - $ref: "#/components/parameters/task_id"
+    put:
+      tags:
+        - review answer tasks
+      summary: Completes the review answer task by rejecting the answer.
+      operationId: CompleteReviewAnswerTask
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/reject_answer"              
       responses:
         202:
           description: Accepted
@@ -135,7 +163,7 @@ paths:
     get:
       tags:
         - modify answer tasks
-      summary: Gets a modify answer task
+      summary: Gets a modify answer task.
       operationId: GetModifyAnswerTask
       responses:
         200:
@@ -146,10 +174,13 @@ paths:
                 $ref: "#/components/schemas/modify_answer_task"
         404:
           description: Task not found
+  /api/questions/modify_answer_tasks/{task_id}/modify:
+    parameters:        
+      - $ref: "#/components/parameters/task_id"
     put:
       tags:
         - modify answer tasks
-      summary: Completes the modify answer task
+      summary: Completes the modify answer task by modifing the answer.
       operationId: CompleteModifyAnswerTask
       requestBody:
         required: true
@@ -162,173 +193,219 @@ paths:
           description: Accepted
         404:
           description: Task not found
-          
-          
 
 components:
 
   schemas:
 
     # COMMANDS
+
+    command:
+      type: object
+      properties:
+        command_id:
+          type: string
+          format: uuid
+      required:
+        - command_id
     
     register_question:
-      type: object
-      properties:
-        question_id:
-          $ref: "#/components/schemas/question_id"
-        subject:
-          $ref: "#/components/schemas/subject"
-        question:
-          $ref: "#/components/schemas/question"
-        sender:
-          $ref: "#/components/schemas/sender"
-      required:
-        - question_id
-        - subject
-        - question
-        - sender
+      allOf:
+        - $ref: "#/components/schemas/command"
+        - properties:            
+            question_id:
+              $ref: "#/components/schemas/question_id"
+            subject:
+              $ref: "#/components/schemas/subject"
+            question:
+              $ref: "#/components/schemas/question"
+            sender:
+              $ref: "#/components/schemas/sender"
+          required:
+            - question_id
+            - subject
+            - question
+            - sender
+
+    end_question:
+      allOf:
+        - $ref: "#/components/schemas/command"
         
     answer_question:
-      type: object
-      properties:
-        command_type:
-          type: string
-          enum:
-            - answer_question
-        answer:
-          $ref: "#/components/schemas/answer"
+      allOf:
+        - $ref: "#/components/schemas/command"
+        - properties:
+            answer:
+              $ref: "#/components/schemas/answer"
+          required:
+            - answer
       
     accept_answer:
-      type: object
-      properties:
-        command_type:
-          type: string
-          enum:
-            - accept_answer
+      allOf:
+        - $ref: "#/components/schemas/command"
       
     reject_answer:
-      type: object
-      properties:
-        command_type:
-          type: string
-          enum:
-            - reject_answer
-        rejection:
-          $ref: "#/components/schemas/rejection"
+      allOf:
+        - $ref: "#/components/schemas/command"
+        - properties:
+            rejection:
+              $ref: "#/components/schemas/rejection"
+          required:
+            - rejection
     
     modify_answer:
-      type: object
-      properties:
-        command_type:
-          type: string
-          enum:
-            - modify_answer
-        answer:
-          $ref: "#/components/schemas/answer"
+      allOf:
+        - $ref: "#/components/schemas/command"
+        - properties:
+            answer:
+              $ref: "#/components/schemas/answer"
+          required:
+            - answer
           
     # RESPONSES:
     
+    response:
+      type: object
+
+    paged_response:
+      allOf:
+        - $ref: "#/components/schemas/response"
+        - properties:
+            self: 
+              type: string
+              format: uri
+            first: 
+              type: string
+              format: uri
+            prev: 
+              type: string
+              format: uri
+            next: 
+              type: string
+              format: uri
+            last: 
+              type: string
+              format: uri
+          required:
+            - next
+
     questions:
-      type: array
-      items:
-        type: object
-        properties:
-          question_id:
-            $ref: "#/components/schemas/question_id"
-          recieved_on:
-            $ref: "#/components/schemas/recieved_on"
-          last_activity_on:
-            $ref: "#/components/schemas/last_activity_on"
-          subject:
-            $ref: "#/components/schemas/subject"
-          sender:
-            $ref: "#/components/schemas/sender"
-          status:
-            type: string
-            enum:
-              - process_started
-              - question_answered
-              - answer_rejected
-              - answer_accepted
-              - answer_modified
-              - answer_send
-        required:
-          - question_id
-          - recieved_on
-          - subject
-          - sender
-          - status
-          
+      allOf:
+        - $ref: "#/components/schemas/paged_response"
+        - properties:
+            items:
+              type: array
+              items:
+                type: object
+                properties:
+                  question_id:
+                    $ref: "#/components/schemas/question_id"
+                  recieved_on:
+                    $ref: "#/components/schemas/recieved_on"
+                  last_activity_on:
+                    $ref: "#/components/schemas/last_activity_on"
+                  subject:
+                    $ref: "#/components/schemas/subject"
+                  sender:
+                    $ref: "#/components/schemas/sender"
+                  status:
+                    type: string
+                    enum:
+                      - process_started
+                      - question_answered
+                      - answer_rejected
+                      - answer_accepted
+                      - answer_modified
+                      - answer_send
+                required:
+                  - question_id
+                  - recieved_on
+                  - subject
+                  - sender
+                  - status
+          required:
+            - items
+                  
     # TASKS
+
+    task:
+      properties:
+        task_id:
+          $ref: "#/components/schemas/task_id"
+      required:
+        - task_id
     
     answer_question_task:
-      type: object
-      properties:
-        question_id:
-          $ref: "#/components/schemas/question_id"
-        recieved_on:
-          $ref: "#/components/schemas/recieved_on"
-        subject:
-          $ref: "#/components/schemas/subject"
-        question:
-          $ref: "#/components/schemas/question"
-        sender:
-          $ref: "#/components/schemas/sender"
-      required:
-        - question_id
-        - recieved_on
-        - subject
-        - question
-        - sender
+      allOf:
+        - $ref: "#/components/schemas/task"
+        - properties:
+            question_id:
+              $ref: "#/components/schemas/question_id"
+            recieved_on:
+              $ref: "#/components/schemas/recieved_on"
+            subject:
+              $ref: "#/components/schemas/subject"
+            question:
+              $ref: "#/components/schemas/question"
+            sender:
+              $ref: "#/components/schemas/sender"
+          required:
+            - question_id
+            - recieved_on
+            - subject
+            - question
+            - sender
         
     review_answer_task:
-      type: object
-      properties:
-        question_id:
-          $ref: "#/components/schemas/question_id"
-        recieved_on:
-          $ref: "#/components/schemas/recieved_on"
-        subject:
-          $ref: "#/components/schemas/subject"
-        question:
-          $ref: "#/components/schemas/question"
-        sender:
-          $ref: "#/components/schemas/sender"
-        answer:
-          $ref: "#/components/schemas/answer"
-      required:
-        - question_id
-        - recieved_on
-        - subject
-        - question
-        - sender
-        - answer
+      allOf:
+        - $ref: "#/components/schemas/task"
+        - properties:
+            question_id:
+              $ref: "#/components/schemas/question_id"
+            recieved_on:
+              $ref: "#/components/schemas/recieved_on"
+            subject:
+              $ref: "#/components/schemas/subject"
+            question:
+              $ref: "#/components/schemas/question"
+            sender:
+              $ref: "#/components/schemas/sender"
+            answer:
+              $ref: "#/components/schemas/answer"
+          required:
+            - question_id
+            - recieved_on
+            - subject
+            - question
+            - sender
+            - answer
         
     modify_answer_task:
-      type: object
-      properties:
-        question_id:
-          $ref: "#/components/schemas/question_id"
-        recieved_on:
-          $ref: "#/components/schemas/recieved_on"
-        subject:
-          $ref: "#/components/schemas/subject"
-        question:
-          $ref: "#/components/schemas/question"
-        sender:
-          $ref: "#/components/schemas/sender"
-        answer:
-          $ref: "#/components/schemas/answer"
-        rejection:
-          $ref: "#/components/schemas/rejection"
-      required:
-        - question_id
-        - recieved_on
-        - subject
-        - question
-        - sender
-        - answer
-        - rejection
+      allOf:
+        - $ref: "#/components/schemas/task"
+        - properties:
+            question_id:
+              $ref: "#/components/schemas/question_id"
+            recieved_on:
+              $ref: "#/components/schemas/recieved_on"
+            subject:
+              $ref: "#/components/schemas/subject"
+            question:
+              $ref: "#/components/schemas/question"
+            sender:
+              $ref: "#/components/schemas/sender"
+            answer:
+              $ref: "#/components/schemas/answer"
+            rejection:
+              $ref: "#/components/schemas/rejection"
+          required:
+            - question_id
+            - recieved_on
+            - subject
+            - question
+            - sender
+            - answer
+            - rejection
 
     # MODELS
     

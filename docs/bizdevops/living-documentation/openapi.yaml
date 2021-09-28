@@ -50,7 +50,7 @@ paths:
       tags:
         - questions
       summary: Ends the answer question process.
-      operationId: StopAnsweringQuestion
+      operationId: EndQuestion
       requestBody:
         required: true
         content:
@@ -86,7 +86,7 @@ paths:
       tags:
         - answer question tasks
       summary: Completes the answer question task by answering the question.
-      operationId: CompleteAnswerQuestionTask
+      operationId: AnswerQuestion
       requestBody:
         required: true
         content:
@@ -124,7 +124,7 @@ paths:
       tags:
         - review answer tasks
       summary: Completes the review answer task by accepting the answer.
-      operationId: CompleteReviewAnswerTask
+      operationId: AcceptAnswer
       requestBody:
         required: true
         content:
@@ -144,7 +144,7 @@ paths:
       tags:
         - review answer tasks
       summary: Completes the review answer task by rejecting the answer.
-      operationId: CompleteReviewAnswerTask
+      operationId: RejectAnswer
       requestBody:
         required: true
         content:
@@ -181,7 +181,7 @@ paths:
       tags:
         - modify answer tasks
       summary: Completes the modify answer task by modifing the answer.
-      operationId: CompleteModifyAnswerTask
+      operationId: ModifyAnswer
       requestBody:
         required: true
         content:

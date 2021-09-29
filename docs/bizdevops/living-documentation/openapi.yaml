@@ -291,7 +291,9 @@ components:
         - $ref: "#/components/schemas/paged_response"
         - properties:
             items:
-              $ref: "#/components/schemas/questions_model_items"
+              type: array
+              items:
+                $ref: "#/components/schemas/questions_model"
           required:
             - items
     
@@ -377,13 +379,8 @@ components:
             - rejection
 
     # MODELS
-
-    questions_model_items:     
-      type: array
-      items:
-        $ref: "#/components/schemas/questions_model_item"
         
-    questions_model_item:
+    questions_model:
       type: object
       properties:
         question_id:

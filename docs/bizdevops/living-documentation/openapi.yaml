@@ -291,38 +291,10 @@ components:
         - $ref: "#/components/schemas/paged_response"
         - properties:
             items:
-              type: array
-              items:
-                type: object
-                properties:
-                  question_id:
-                    $ref: "#/components/schemas/question_id"
-                  recieved_on:
-                    $ref: "#/components/schemas/recieved_on"
-                  last_activity_on:
-                    $ref: "#/components/schemas/last_activity_on"
-                  subject:
-                    $ref: "#/components/schemas/subject"
-                  sender:
-                    $ref: "#/components/schemas/sender"
-                  status:
-                    type: string
-                    enum:
-                      - process_started
-                      - question_answered
-                      - answer_rejected
-                      - answer_accepted
-                      - answer_modified
-                      - answer_send
-                required:
-                  - question_id
-                  - recieved_on
-                  - subject
-                  - sender
-                  - status
+              $ref: "#/components/schemas/questions_model_items"
           required:
             - items
-                  
+    
     # TASKS
 
     task:
@@ -405,6 +377,40 @@ components:
             - rejection
 
     # MODELS
+
+    questions_model_items:     
+      type: array
+      items:
+        $ref: "#/components/schemas/questions_model_item"
+        
+    questions_model_item:
+      type: object
+      properties:
+        question_id:
+          $ref: "#/components/schemas/question_id"
+        recieved_on:
+          $ref: "#/components/schemas/recieved_on"
+        last_activity_on:
+          $ref: "#/components/schemas/last_activity_on"
+        subject:
+          $ref: "#/components/schemas/subject"
+        sender:
+          $ref: "#/components/schemas/sender"
+        status:
+          type: string
+          enum:
+            - process_started
+            - question_answered
+            - answer_rejected
+            - answer_accepted
+            - answer_modified
+            - answer_send
+      required:
+        - question_id
+        - recieved_on
+        - subject
+        - sender
+        - status
     
     # TYPES
     

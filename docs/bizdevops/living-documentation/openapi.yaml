@@ -213,8 +213,6 @@ components:
       allOf:
         - $ref: "#/components/schemas/command"
         - properties:            
-            question_id:
-              $ref: "#/components/schemas/question_id"
             subject:
               $ref: "#/components/schemas/subject"
             question:
@@ -222,7 +220,6 @@ components:
             sender:
               $ref: "#/components/schemas/sender"
           required:
-            - question_id
             - subject
             - question
             - sender

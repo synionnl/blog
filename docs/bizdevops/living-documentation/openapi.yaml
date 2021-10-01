@@ -232,31 +232,45 @@ components:
       allOf:
         - $ref: "#/components/schemas/command"
         - properties:
+            question_id:
+              $ref: "#/components/schemas/question_id"
             answer:
               $ref: "#/components/schemas/answer"
           required:
+            - question_id
             - answer
       
     accept_answer:
       allOf:
         - $ref: "#/components/schemas/command"
+        - properties:
+            question_id:
+              $ref: "#/components/schemas/question_id"
+          required:
+            - question_id
       
     reject_answer:
       allOf:
         - $ref: "#/components/schemas/command"
         - properties:
+            question_id:
+              $ref: "#/components/schemas/question_id"
             rejection:
               $ref: "#/components/schemas/rejection"
           required:
+            - question_id
             - rejection
     
     modify_answer:
       allOf:
         - $ref: "#/components/schemas/command"
         - properties:
+            question_id:
+              $ref: "#/components/schemas/question_id"
             answer:
               $ref: "#/components/schemas/answer"
           required:
+            - question_id
             - answer
           
     # RESPONSES:

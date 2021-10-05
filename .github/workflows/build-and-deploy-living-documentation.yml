@@ -9,10 +9,10 @@ jobs:
     env:
       RESOURCE_GROUP: synion
       STORAGE_ACCOUNT: synionstorage
-      STORAGE_CONTAINER: docs-synion-nl
+      STORAGE_CONTAINER: www-synion-nl
       CDN_PROFILE: synion-cdn
-      CDN_ENDPOINT: docs-synion-www
-      STORAGE_BUCKET: blog
+      CDN_ENDPOINT: synion-www
+      STORAGE_BUCKET: www
 
     runs-on: ubuntu-latest
 

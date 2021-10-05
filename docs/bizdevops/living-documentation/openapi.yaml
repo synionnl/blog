@@ -212,7 +212,9 @@ components:
     register_question:
       allOf:
         - $ref: "#/components/schemas/command"
-        - properties:            
+        - properties:        
+            question_id:
+              $ref: "#/components/schemas/question_id"
             subject:
               $ref: "#/components/schemas/subject"
             question:

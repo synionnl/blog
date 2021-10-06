@@ -25,8 +25,14 @@ paths:
               $ref: "#/components/schemas/register_question"
               
       responses:
-        202:
-          description: Accepted
+        201:
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: The locayion of the created resource.
     get:
       tags:
         - questions
@@ -41,7 +47,25 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/questions"
+                $ref: "#/components/schemas/questions_response"
+
+  /api/questions/{question_id}:
+    parameters:
+      - $ref: "#/components/parameters/question_id"
+    get:
+      tags:
+        - questions
+      summary: Gets an answer question proces.
+      operationId: GetQuestion
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/question_response"
+        404:
+          description: Question not found
           
   /api/questions/{question_id}/end:
     parameters:
@@ -302,8 +326,17 @@ components:
               format: uri
           required:
             - next
+    
+    question_response:
+      allOf:
+        - $ref: "#/components/schemas/response"
+        - properties:
+            question:
+              $ref: "#/components/schemas/question_model"
+          required:
+            - question
 
-    questions:
+    questions_response:
       allOf:
         - $ref: "#/components/schemas/paged_response"
         - properties:
@@ -396,6 +429,9 @@ components:
             - rejection
 
     # MODELS
+
+    question_model:
+      $ref:  "#/components/schemas/questions_model"
         
     questions_model:
       type: object

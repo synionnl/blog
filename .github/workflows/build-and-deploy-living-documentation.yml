@@ -75,6 +75,7 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
+            az account show
             az config set extension.use_dynamic_install=yes_without_prompt
             az storage container create -n "$STORAGE_CONTAINER" --account-name "$STORAGE_ACCOUNT"
             az storage azcopy blob delete -c "$STORAGE_CONTAINER" --account-name "$STORAGE_ACCOUNT" --recursive

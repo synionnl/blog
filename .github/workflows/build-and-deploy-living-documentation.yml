@@ -75,11 +75,10 @@ jobs:
         uses: azure/CLI@v1
         with:
           inlineScript: |
-            az config set extension.use_dynamic_install=yes_without_prompt
-            az storage container delete -n "$STORAGE_CONTAINER" --account-name "$STORAGE_ACCOUNT"
-            az storage container create -n "$STORAGE_CONTAINER" --account-name "$STORAGE_ACCOUNT" --public-access blob
-            az storage blob upload-batch --account-name "$STORAGE_ACCOUNT" -d "$STORAGE_CONTAINER" -s "./main/dist"
-            az cdn endpoint purge --content-paths  "/*" --profile-name "$CDN_PROFILE" --name "$CDN_ENDPOINT" --resource-group "$RESOURCE_GROUP"
+            az config set extension.use_dynamic_install=yes_without_prompt            
+            az storage azcopy blob delete -c "$STORAGE_CONTAINER" --account-name "$STORAGE_ACCOUNT" --auth-mode login --recursive
+            az storage azcopy blob upload -c "$STORAGE_CONTAINER" -s "./main/dist" --account-name "$STORAGE_ACCOUNT" --auth-mode login --recursive
+            az cdn endpoint purge --content-paths  "/*" --profile-name "$CDN_PROFILE" --name "$CDN_ENDPOINT" --resource-group "$RESOURCE_GROUP" --auth-mode login
 
       - name: Azure logout
         if: always()

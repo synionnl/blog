@@ -1,6 +1,6 @@
 name: BUILD & DEPLOY
 
-on: [push]
+on: [ workflow_dispatch, push ]
 
 jobs:
 

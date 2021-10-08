@@ -38,7 +38,7 @@
     </bpmn:userTask>
     <bpmn:serviceTask id="Activity_SendQuestionAnsweredEvent" name="Send question answered event">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="SendQuestionAnsweredEventJob" />
+        <zeebe:taskDefinition type="SendQuestionAnsweredEventJobV1" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1a6ag59</bpmn:incoming>
       <bpmn:outgoing>Flow_0wbp61z</bpmn:outgoing>
@@ -48,7 +48,7 @@
     </bpmn:endEvent>
     <bpmn:serviceTask id="Activity_SendAnswer" name="Send answer">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="SendAnswerJob" />
+        <zeebe:taskDefinition type="SendAnswerJobV1" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_1e7pkcl</bpmn:incoming>
       <bpmn:outgoing>Flow_1yd12gh</bpmn:outgoing>
@@ -94,7 +94,7 @@
     </bpmn:intermediateThrowEvent>
     <bpmn:sequenceFlow id="Flow_1a6ag59" sourceRef="Event_AnswerSend" targetRef="Activity_SendQuestionAnsweredEvent" />
   </bpmn:process>
-  <bpmn:message id="Message_010wffl" name="Message_QuestionRecieved" />
+  <bpmn:message id="Message_010wffl" name="Message_QuestionRecieved_V1" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_AnswerQuestions">
       <bpmndi:BPMNShape id="Participant_07dcn36_di" bpmnElement="Participant_AnswerQuestions" isHorizontal="true">

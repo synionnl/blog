@@ -20,8 +20,6 @@ Zeebe is a service orchestrator but it uses events internally. A job is publishe
 
 Zeebe is [opensourced](https://github.com/camunda-cloud/zeebe) and available as a [hosted service](https://camunda.com/products/cloud/) or as a [docker container](https://hub.docker.com/r/camunda/zeebe/) which you can host yourself.
 
----
-
 ## .Net job handling
 
 So for the developer it all boils down to handling jobs: input > output. With the [zb-client-bootstrap nuget package](https://www.nuget.org/packages/zb-client-bootstrap/) this is easy. This package uses the [zb-client](https://www.nuget.org/packages/zb-client) internally and ads logic so that job handlers are automatically discovered, hosted and wired to Zeebe.
@@ -85,8 +83,6 @@ class DoSomething : AbstractJob
 
 This is it. The task of type ‘DoSomething’ in any process instance is now handled by the `DoSomethingHandler`. The Zeebe job is automatically completed when the job is handled resulting in activating the next step in the process. Unhandled exceptions are also automatically sent to Zeebe resulting in the activation of the retry policy.
 
----
-
 ### Response values
 
 But there is more. Processes can make decisions based on data. Data can be added as variables to the process instance. Typically this information is added when completing a job. Therefore it is also possible to complete a job with a response. This is done by adding a second type to the `IAsyncJobHandler<TJob, TResponse>`. The response is automatically serialized and passed to Zeebe when completing the job.
@@ -120,8 +116,6 @@ class Response
 
 Property of type boolean is automatically added to the process instance making it possible to add the following condition to the decision flow `=Property=true`
 
----
-
 ### Business exceptions
 
 Exceptions are not only technical; they also live in the business domain. Therefore it is possible to throw business exceptions inside the job handler resulting in an error automatically being send to Zeebe. A business exception is any exception which extends JobException. Business exceptions can be handled in the process by modelling an catch event on the task boundry.
@@ -152,8 +146,6 @@ class Response
     public bool Property { get; set; }
 }
 ```
-
----
 
 ## Closing notes
 

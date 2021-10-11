@@ -14,12 +14,12 @@ allOf:
       status:
         type: string
         enum:
-          - process_started
-          - question_answered
-          - answer_rejected
-          - answer_accepted
-          - answer_modified
-          - answer_send
+          - PROCESS_STARTED
+          - QUESTION_ANSWERED
+          - ANSWER_REJECTED
+          - ANSWER_ACCEPTED
+          - ANSWER_MODIFED
+          - ANSER_SEND
     required:
       - question_id
       - recieved_on

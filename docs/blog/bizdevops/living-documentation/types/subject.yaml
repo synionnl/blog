@@ -1,0 +1,3 @@
+type: string
+description: The subject of the question.
+example: Question regarding a loan application.

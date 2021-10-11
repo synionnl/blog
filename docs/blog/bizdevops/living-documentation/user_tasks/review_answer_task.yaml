@@ -1,0 +1,22 @@
+allOf:
+  - $ref: "types/user_task.yaml"
+  - properties:
+      question_id:
+        $ref: "../types/question_id.yaml"
+      recieved_on:
+        $ref: "../types/recieved_on.yaml"
+      subject:
+        $ref: "../types/subject.yaml"
+      question:
+        $ref: "../types/question.yaml"
+      sender:
+        $ref: "../types/sender.yaml"
+      answer:
+        $ref: "../types/answer.yaml"
+    required:
+      - question_id
+      - recieved_on
+      - subject
+      - question
+      - sender
+      - answer

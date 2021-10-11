@@ -1,0 +1,5 @@
+in: path
+name: question_id
+required: true
+schema:
+  $ref: "../types/question_id.yaml"

@@ -9,18 +9,4 @@ channels:
   questions/answered:
     subscribe:
       message:
-        $ref: '#/components/messages/question_answered'
-        
-components:
-
-  messages:
-
-    question_answered:
-      payload:
-        type: object
-        properties:
-          question_id:
-            type: string
-            format: uuid
-        required:
-          - question_id
+        $ref: "events/question_answered_event.yaml"

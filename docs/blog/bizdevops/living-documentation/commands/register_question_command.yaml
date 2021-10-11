@@ -1,0 +1,16 @@
+allOf:
+  - $ref: "types/command.yaml"
+  - properties:        
+      question_id:
+        $ref: "../types/question_id.yaml"
+      subject:
+        $ref: "../types/subject.yaml"
+      question:
+        $ref: "../types/question.yaml"
+      sender:
+        $ref: "../types/sender.yaml"
+    required:
+      - question_id
+      - subject
+      - question
+      - sender

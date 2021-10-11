@@ -1,0 +1,15 @@
+type: object
+properties:
+  type:
+    type: string
+    enum:
+      - ERROR
+      - WARN
+      - INFO
+    example: WARN
+  message:
+    type: string
+    example: The task is almost overdue.
+required:
+  - type
+  - message

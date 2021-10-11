@@ -1,0 +1,3 @@
+allOf:
+  - $ref: "types/response.yaml"
+  - $ref: "../user_tasks/modify_answer_task.yaml"

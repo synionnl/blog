@@ -1,0 +1,25 @@
+type: object
+properties:
+  id:
+    $ref: "user_task_id.yaml"
+  name:
+    $ref: "name.yaml"
+  description:
+    $ref: "description.yaml"
+  icon:
+    $ref: "icon.yaml"
+  badge:
+    $ref: "badge.yaml"
+  due_date:
+    $ref: "due_date.yaml"
+  delayed_until:
+    $ref: "delayed_until.yaml"
+  claimed_on:
+    $ref: "claimed_on.yaml"
+  links:
+    $ref: "links.yaml"
+required:
+  - id
+  - name
+  - due_date
+  - links

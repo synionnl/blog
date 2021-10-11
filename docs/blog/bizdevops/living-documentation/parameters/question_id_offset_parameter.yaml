@@ -1,0 +1,5 @@
+in: query
+name: offset
+description: The question id reference to indicate until where items are skipped.
+schema:
+  $ref: "../types/question.yaml"

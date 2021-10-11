@@ -1,0 +1,10 @@
+allOf:
+  - $ref: "types/command.yaml"
+  - properties:
+      question_id:
+        $ref: "../types/question_id.yaml"
+      rejection:
+        $ref: "../types/rejection.yaml"
+    required:
+      - question_id
+      - rejection

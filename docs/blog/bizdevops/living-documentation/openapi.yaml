@@ -22,36 +22,30 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/register_question"
+              $ref: "commands/register_question_command.yaml"
               
       responses:
         201:
-          description: Created
-          headers:
-            Location:
-              schema:
-                type: string
-                format: uri
-              description: The locayion of the created resource.
+          $ref: "responses/types/201.yaml"
     get:
       tags:
         - questions
       summary: Gets a list of answer question processes.
       operationId: GetQuestions
       parameters:
-        - $ref: "#/components/parameters/offset"
-        - $ref: "#/components/parameters/limit"
+        - $ref: "parameters/question_id_offset_parameter.yaml"
+        - $ref: "parameters/limit_parameter.yaml"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/questions_response"
+                $ref: "responses/questions_response.yaml"
 
   /api/questions/{question_id}:
     parameters:
-      - $ref: "#/components/parameters/question_id"
+      - $ref: "parameters/question_id_parameter.yaml"
     get:
       tags:
         - questions
@@ -63,13 +57,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/question_response"
+                $ref: "responses/question_response.yaml"
         404:
-          description: Question not found
+          $ref: "responses/types/404.yaml"
           
   /api/questions/{question_id}/end:
     parameters:
-      - $ref: "#/components/parameters/question_id"
+      - $ref: "parameters/question_id_parameter.yaml"
     put:
       tags:
         - questions
@@ -80,14 +74,14 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/end_question"
+              $ref: "commands/end_question_command.yaml"
       responses:
         202:
           description: Accepted
   
-  /api/questions/answer_question_tasks/{task_id}:
+  /api/questions/answer_question_tasks/{user_task_id}:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "parameters/user_task_id_parameter.yaml"
     get:
       tags:
         - answer question tasks
@@ -99,13 +93,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/answer_question_task"
+                $ref: "responses/answer_question_task_response.yaml"
         404:
-          description: Task not found
+          $ref: "responses/types/404.yaml"
 
-  /api/questions/answer_question_tasks/{task_id}/answer:
+  /api/questions/answer_question_tasks/{user_task_id}/answer:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - answer question tasks
@@ -116,16 +110,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/answer_question"
+              $ref: "commands/answer_question_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          description: Task not found
+          $ref: "responses/types/404.yaml"
           
-  /api/questions/review_answer_tasks/{task_id}:
+  /api/questions/review_answer_tasks/{user_task_id}:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "parameters/user_task_id_parameter.yaml"
     get:
       tags:
         - review answer tasks
@@ -137,13 +131,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/review_answer_task"
+                $ref: "responses/review_answer_task_response.yaml"
         404:
-          description: Task not found
+          $ref: "responses/types/404.yaml"
 
-  /api/questions/review_answer_tasks/{task_id}/accept:
+  /api/questions/review_answer_tasks/{user_task_id}/accept:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - review answer tasks
@@ -154,16 +148,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/accept_answer"
+              $ref: "commands/accept_answer_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          description: Task not found
+          $ref: "responses/types/404.yaml"
 
-  /api/questions/review_answer_tasks/{task_id}/reject:
+  /api/questions/review_answer_tasks/{user_task_id}/reject:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - review answer tasks
@@ -174,16 +168,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/reject_answer"              
+              $ref: "commands/reject_answer_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          description: Task not found
+          $ref: "responses/types/404.yaml"
           
-  /api/questions/modify_answer_tasks/{task_id}:
+  /api/questions/modify_answer_tasks/{user_task_id}:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "parameters/user_task_id_parameter.yaml"
     get:
       tags:
         - modify answer tasks
@@ -195,12 +189,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/modify_answer_task"
+                $ref: "responses/modify_answer_task_response.yaml"
         404:
-          description: Task not found
-  /api/questions/modify_answer_tasks/{task_id}/modify:
+          $ref: "responses/types/404.yaml"
+
+  /api/questions/modify_answer_tasks/{user_task_id}/modify:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - modify answer tasks
@@ -211,322 +206,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "#/components/schemas/modify_answer"
+              $ref: "commands/modify_answer_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          description: Task not found
-
-components:
-
-  schemas:
-
-    # COMMANDS
-
-    command:
-      type: object
-      properties:
-        command_id:
-          type: string
-          format: uuid
-      required:
-        - command_id
-    
-    register_question:
-      allOf:
-        - $ref: "#/components/schemas/command"
-        - properties:        
-            question_id:
-              $ref: "#/components/schemas/question_id"
-            subject:
-              $ref: "#/components/schemas/subject"
-            question:
-              $ref: "#/components/schemas/question"
-            sender:
-              $ref: "#/components/schemas/sender"
-          required:
-            - question_id
-            - subject
-            - question
-            - sender
-
-    end_question:
-      allOf:
-        - $ref: "#/components/schemas/command"
-        
-    answer_question:
-      allOf:
-        - $ref: "#/components/schemas/command"
-        - properties:
-            question_id:
-              $ref: "#/components/schemas/question_id"
-            answer:
-              $ref: "#/components/schemas/answer"
-          required:
-            - question_id
-            - answer
-      
-    accept_answer:
-      allOf:
-        - $ref: "#/components/schemas/command"
-        - properties:
-            question_id:
-              $ref: "#/components/schemas/question_id"
-          required:
-            - question_id
-      
-    reject_answer:
-      allOf:
-        - $ref: "#/components/schemas/command"
-        - properties:
-            question_id:
-              $ref: "#/components/schemas/question_id"
-            rejection:
-              $ref: "#/components/schemas/rejection"
-          required:
-            - question_id
-            - rejection
-    
-    modify_answer:
-      allOf:
-        - $ref: "#/components/schemas/command"
-        - properties:
-            question_id:
-              $ref: "#/components/schemas/question_id"
-            answer:
-              $ref: "#/components/schemas/answer"
-          required:
-            - question_id
-            - answer
-          
-    # RESPONSES:
-    
-    response:
-      type: object
-
-    paged_response:
-      allOf:
-        - $ref: "#/components/schemas/response"
-        - properties:
-            self: 
-              type: string
-              format: uri
-            first: 
-              type: string
-              format: uri
-            prev: 
-              type: string
-              format: uri
-            next: 
-              type: string
-              format: uri
-            last: 
-              type: string
-              format: uri
-          required:
-            - next
-    
-    question_response:
-      allOf:
-        - $ref: "#/components/schemas/response"
-        - properties:
-            question:
-              $ref: "#/components/schemas/question_model"
-          required:
-            - question
-
-    questions_response:
-      allOf:
-        - $ref: "#/components/schemas/paged_response"
-        - properties:
-            items:
-              type: array
-              items:
-                $ref: "#/components/schemas/questions_model"
-          required:
-            - items
-    
-    # TASKS
-
-    task:
-      properties:
-        task_id:
-          $ref: "#/components/schemas/task_id"
-      required:
-        - task_id
-    
-    answer_question_task:
-      allOf:
-        - $ref: "#/components/schemas/task"
-        - properties:
-            question_id:
-              $ref: "#/components/schemas/question_id"
-            recieved_on:
-              $ref: "#/components/schemas/recieved_on"
-            subject:
-              $ref: "#/components/schemas/subject"
-            question:
-              $ref: "#/components/schemas/question"
-            sender:
-              $ref: "#/components/schemas/sender"
-          required:
-            - question_id
-            - recieved_on
-            - subject
-            - question
-            - sender
-        
-    review_answer_task:
-      allOf:
-        - $ref: "#/components/schemas/task"
-        - properties:
-            question_id:
-              $ref: "#/components/schemas/question_id"
-            recieved_on:
-              $ref: "#/components/schemas/recieved_on"
-            subject:
-              $ref: "#/components/schemas/subject"
-            question:
-              $ref: "#/components/schemas/question"
-            sender:
-              $ref: "#/components/schemas/sender"
-            answer:
-              $ref: "#/components/schemas/answer"
-          required:
-            - question_id
-            - recieved_on
-            - subject
-            - question
-            - sender
-            - answer
-        
-    modify_answer_task:
-      allOf:
-        - $ref: "#/components/schemas/task"
-        - properties:
-            question_id:
-              $ref: "#/components/schemas/question_id"
-            recieved_on:
-              $ref: "#/components/schemas/recieved_on"
-            subject:
-              $ref: "#/components/schemas/subject"
-            question:
-              $ref: "#/components/schemas/question"
-            sender:
-              $ref: "#/components/schemas/sender"
-            answer:
-              $ref: "#/components/schemas/answer"
-            rejection:
-              $ref: "#/components/schemas/rejection"
-          required:
-            - question_id
-            - recieved_on
-            - subject
-            - question
-            - sender
-            - answer
-            - rejection
-
-    # MODELS
-
-    question_model:
-      $ref:  "#/components/schemas/questions_model"
-        
-    questions_model:
-      type: object
-      properties:
-        question_id:
-          $ref: "#/components/schemas/question_id"
-        recieved_on:
-          $ref: "#/components/schemas/recieved_on"
-        last_activity_on:
-          $ref: "#/components/schemas/last_activity_on"
-        subject:
-          $ref: "#/components/schemas/subject"
-        sender:
-          $ref: "#/components/schemas/sender"
-        status:
-          type: string
-          enum:
-            - process_started
-            - question_answered
-            - answer_rejected
-            - answer_accepted
-            - answer_modified
-            - answer_send
-      required:
-        - question_id
-        - recieved_on
-        - subject
-        - sender
-        - status
-    
-    # TYPES
-    
-    question_id:
-      type: string
-      format: uuid
-      
-    recieved_on:
-      type: string
-      format: date-time
-      
-    last_activity_on:
-      type: string
-      format: date-time
-      
-    subject:
-      type: string
-  
-    question:
-      type: string
-      format: markdown
-      
-    sender:
-      type: string
-      format: email
-  
-    answer:
-      type: string
-      format: markdown
-  
-    rejection:
-      type: string
-      format: markdown
-      
-    task_id:
-      type: integer
-      format: int64
-      
-  parameters:
-
-    question_id:
-      in: path
-      name: question_id
-      required: true
-      schema:
-        $ref: "#/components/schemas/question_id"
-        
-    task_id:
-      in: path
-      name: task_id
-      required: true
-      schema:
-        $ref: "#/components/schemas/task_id"
-
-    offset:
-      in: query
-      name: offset
-      schema:
-        type: integer
-        default: 0
-      description: The number of items to skip before starting to collect the result set
-    
-    limit:
-      in: query
-      name: limit
-      schema:
-        type: integer
-        default: 10
-      description: The numbers of items to return
+          $ref: "responses/types/404.yaml"

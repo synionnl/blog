@@ -23,7 +23,6 @@ paths:
           application/json:
             schema:
               $ref: "commands/register_question_command.yaml"
-              
       responses:
         201:
           $ref: "responses/types/201.yaml"

@@ -1,5 +1,6 @@
 type: object
-messages:
-  type: array
-  items:
-    $ref: "message.yaml"
+properties:
+  messages:
+    type: array
+    items:
+      $ref: "message.yaml"

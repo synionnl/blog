@@ -12,14 +12,7 @@ allOf:
       sender:
         $ref: "../types/sender.yaml"
       status:
-        type: string
-        enum:
-          - process_started
-          - question_answered
-          - answer_rejected
-          - answer_accepted
-          - answer_modified
-          - answer_send
+        $ref: "../types/status.yaml"
     required:
       - question_id
       - recieved_on

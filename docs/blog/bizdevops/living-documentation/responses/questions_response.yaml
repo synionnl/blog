@@ -1,4 +1,5 @@
 allOf:
+  - $ref: "types/response.yaml"
   - $ref: "types/offset_response.yaml"
   - properties:
       question_id:
@@ -12,14 +13,7 @@ allOf:
       sender:
         $ref: "../types/sender.yaml"
       status:
-        type: string
-        enum:
-          - PROCESS_STARTED
-          - QUESTION_ANSWERED
-          - ANSWER_REJECTED
-          - ANSWER_ACCEPTED
-          - ANSWER_MODIFED
-          - ANSER_SEND
+        $ref: "../types/status.yaml"
     required:
       - question_id
       - recieved_on

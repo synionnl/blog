@@ -1,8 +1,7 @@
-201:
-  description: Created
-  headers:
-    Location:
-      description: The location of the created resource.
-      schema:
-        type: string
-        format: uri
+description: Created
+headers:
+  Location:
+    schema:
+      type: string
+      format: uri      
+    description: The location of the created resource.

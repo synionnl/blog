@@ -1,5 +1,4 @@
 allOf:
-  - $ref: "types/response.yaml"
   - $ref: "types/offset_response.yaml"
   - properties:
       question_id:

@@ -85,9 +85,9 @@ paths:
         202:
           description: Accepted
   
-  /api/questions/answer_question_tasks/{task_id}:
+  /api/questions/answer_question_tasks/{user_task_id}:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "#/components/parameters/user_task_id"
     get:
       tags:
         - answer question tasks
@@ -103,9 +103,9 @@ paths:
         404:
           description: Task not found
 
-  /api/questions/answer_question_tasks/{task_id}/answer:
+  /api/questions/answer_question_tasks/{user_task_id}/answer:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "#/components/parameters/user_task_id"
     put:
       tags:
         - answer question tasks
@@ -123,9 +123,9 @@ paths:
         404:
           description: Task not found
           
-  /api/questions/review_answer_tasks/{task_id}:
+  /api/questions/review_answer_tasks/{user_task_id}:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "#/components/parameters/user_task_id"
     get:
       tags:
         - review answer tasks
@@ -141,9 +141,9 @@ paths:
         404:
           description: Task not found
 
-  /api/questions/review_answer_tasks/{task_id}/accept:
+  /api/questions/review_answer_tasks/{user_task_id}/accept:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "#/components/parameters/user_task_id"
     put:
       tags:
         - review answer tasks
@@ -161,9 +161,9 @@ paths:
         404:
           description: Task not found
 
-  /api/questions/review_answer_tasks/{task_id}/reject:
+  /api/questions/review_answer_tasks/{user_task_id}/reject:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "#/components/parameters/user_task_id"
     put:
       tags:
         - review answer tasks
@@ -181,9 +181,9 @@ paths:
         404:
           description: Task not found
           
-  /api/questions/modify_answer_tasks/{task_id}:
+  /api/questions/modify_answer_tasks/{user_task_id}:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "#/components/parameters/user_task_id"
     get:
       tags:
         - modify answer tasks
@@ -198,9 +198,9 @@ paths:
                 $ref: "#/components/schemas/modify_answer_task"
         404:
           description: Task not found
-  /api/questions/modify_answer_tasks/{task_id}/modify:
+  /api/questions/modify_answer_tasks/{user_task_id}/modify:
     parameters:        
-      - $ref: "#/components/parameters/task_id"
+      - $ref: "#/components/parameters/user_task_id"
     put:
       tags:
         - modify answer tasks
@@ -351,10 +351,10 @@ components:
 
     task:
       properties:
-        task_id:
-          $ref: "#/components/schemas/task_id"
+        user_task_id:
+          $ref: "#/components/schemas/user_task_id"
       required:
-        - task_id
+        - user_task_id
     
     answer_question_task:
       allOf:
@@ -495,9 +495,8 @@ components:
       type: string
       format: markdown
       
-    task_id:
-      type: integer
-      format: int64
+    user_task_id:
+      type: string
       
   parameters:
 
@@ -508,12 +507,12 @@ components:
       schema:
         $ref: "#/components/schemas/question_id"
         
-    task_id:
+    user_task_id:
       in: path
-      name: task_id
+      name: user_task_id
       required: true
       schema:
-        $ref: "#/components/schemas/task_id"
+        $ref: "#/components/schemas/user_task_id"
 
     offset:
       in: query

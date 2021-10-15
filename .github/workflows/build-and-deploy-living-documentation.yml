@@ -75,6 +75,7 @@ jobs:
         if: env.STORAGE_BUCKET == null || env.STORAGE_BUCKET == ''
         uses: azure/CLI@v1
         with:
+          azcliversion: 2.25.0
           inlineScript: |
             az account show
             az config set extension.use_dynamic_install=yes_without_prompt
@@ -87,6 +88,7 @@ jobs:
         if: env.STORAGE_BUCKET != null && env.STORAGE_BUCKET != ''
         uses: azure/CLI@v1
         with:
+          azcliversion: 2.25.0
           inlineScript: |
             az account show
             az config set extension.use_dynamic_install=yes_without_prompt

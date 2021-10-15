@@ -349,7 +349,7 @@ components:
     
     # TASKS
 
-    task:
+    user_task:
       properties:
         user_task_id:
           $ref: "#/components/schemas/user_task_id"
@@ -358,7 +358,7 @@ components:
     
     answer_question_task:
       allOf:
-        - $ref: "#/components/schemas/task"
+        - $ref: "#/components/schemas/user_task"
         - properties:
             question_id:
               $ref: "#/components/schemas/question_id"
@@ -379,7 +379,7 @@ components:
         
     review_answer_task:
       allOf:
-        - $ref: "#/components/schemas/task"
+        - $ref: "#/components/schemas/user_task"
         - properties:
             question_id:
               $ref: "#/components/schemas/question_id"
@@ -403,7 +403,7 @@ components:
         
     modify_answer_task:
       allOf:
-        - $ref: "#/components/schemas/task"
+        - $ref: "#/components/schemas/user_task"
         - properties:
             question_id:
               $ref: "#/components/schemas/question_id"

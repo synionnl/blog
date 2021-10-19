@@ -18,7 +18,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 * [commands & queries](living-documentation/answer-question-user-task.openapi.yaml)
 * [UI](living-documentation/answer-question-user-task.form.yaml)
-{ .file-tabs }
 
 ### Review answer task
 
@@ -26,8 +25,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 * [commands & queries](living-documentation/review-answer-user-task.openapi.yaml)
 * [UI](living-documentation/review-answer-user-task.form.yaml)
-* [BDD](living-documentation/bdd.feature)
-{ .file-tabs }
+* [BDD](living-documentation/review-answer-user-task.bdd.feature)
 
 ### Modify answer task
 
@@ -35,7 +33,6 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 * [commands & queries](living-documentation/modify-answer-user-task.openapi.yaml)
 * [UI](living-documentation/modify-answer-user-task.form.yaml)
-{ .file-tabs }
 
 ### Send answer task
 

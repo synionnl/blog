@@ -1,4 +1,5 @@
 allOf:
+  - title: answer_question_user_task
   - $ref: "types/user_task.yaml"
   - properties:
       question_id:

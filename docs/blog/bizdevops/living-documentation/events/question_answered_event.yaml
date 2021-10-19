@@ -1,4 +1,5 @@
 allOf:
+  - title: question_answered_event
   - $ref: "types/event.yaml"
   - properties:
       question_id:

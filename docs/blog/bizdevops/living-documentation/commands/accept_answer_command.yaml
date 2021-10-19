@@ -1,4 +1,5 @@
 allOf:
+  - title: accept_answer_command
   - $ref: "types/command.yaml"
   - properties:
       question_id:

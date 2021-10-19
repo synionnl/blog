@@ -1,22 +1,8 @@
 allOf:
+  - title: question_response
   - $ref: "types/response.yaml"
   - properties:
-      question_id:
-        $ref: "../types/question_id.yaml"
-      recieved_on:
-        $ref: "../types/recieved_on.yaml"
-      last_activity_on:
-        $ref: "../types/last_activity_on.yaml"
-      subject:
-        $ref: "../types/subject.yaml"
-      sender:
-        $ref: "../types/sender.yaml"
-      status:
-        $ref: "../types/status.yaml"
+      question:
+        $ref: "../models/question.yaml"
     required:
-      - question_id
-      - recieved_on
-      - last_activity_on
-      - subject
-      - sender
-      - status
+      - question

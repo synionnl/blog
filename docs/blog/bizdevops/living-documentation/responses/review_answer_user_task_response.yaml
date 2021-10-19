@@ -1,0 +1,8 @@
+allOf:
+  - title: review_answer_user_task_response
+  - $ref: "types/response.yaml"
+  - properties:
+      user_task:
+        $ref: "../user_tasks/review_answer_user_task.yaml"
+    required:
+      - user_task

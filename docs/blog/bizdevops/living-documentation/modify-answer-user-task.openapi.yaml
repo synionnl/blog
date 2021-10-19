@@ -11,7 +11,7 @@ paths:
 
   /api/questions/modify_answer_user_tasks/{user_task_id}:
     parameters:        
-      - $ref: "parameters/user_task_id_parameter.yaml"
+      - $ref: "lib/parameters/user_task_id_parameter.yaml"
     get:
       tags:
         - modify answer user tasks
@@ -23,13 +23,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "responses/modify_answer_user_task_response.yaml"
+                $ref: "lib/responses/modify_answer_user_task_response.yaml"
         404:
-          $ref: "responses/types/404.yaml"
+          $ref: "lib/responses/types/404.yaml"
 
   /api/questions/modify_answer_user_tasks/{user_task_id}/modify:
     parameters:        
-      - $ref: "parameters/user_task_id_parameter.yaml"
+      - $ref: "lib/parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - modify answer user tasks
@@ -40,9 +40,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "commands/modify_answer_command.yaml"
+              $ref: "lib/commands/modify_answer_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          $ref: "responses/types/404.yaml"
+          $ref: "lib/responses/types/404.yaml"

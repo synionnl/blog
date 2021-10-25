@@ -11,7 +11,7 @@ paths:
           
   /api/questions/review_answer_user_tasks/{user_task_id}:
     parameters:        
-      - $ref: "lib/parameters/user_task_id_parameter.yaml"
+      - $ref: "data-dictionary/parameters/user_task_id_parameter.yaml"
     get:
       tags:
         - review answer user tasks
@@ -23,13 +23,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "lib/responses/review_answer_user_task_response.yaml"
+                $ref: "data-dictionary/responses/review_answer_user_task_response.yaml"
         404:
-          $ref: "lib/responses/types/404.yaml"
+          $ref: "data-dictionary/responses/types/404.yaml"
 
   /api/questions/review_answer_user_tasks/{user_task_id}/accept:
     parameters:        
-      - $ref: "lib/parameters/user_task_id_parameter.yaml"
+      - $ref: "data-dictionary/parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - review answer user tasks
@@ -40,16 +40,16 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "lib/commands/accept_answer_command.yaml"
+              $ref: "data-dictionary/commands/accept_answer_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          $ref: "lib/responses/types/404.yaml"
+          $ref: "data-dictionary/responses/types/404.yaml"
 
   /api/questions/review_answer_user_tasks/{user_task_id}/reject:
     parameters:        
-      - $ref: "lib/parameters/user_task_id_parameter.yaml"
+      - $ref: "data-dictionary/parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - review answer user tasks
@@ -60,9 +60,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "lib/commands/reject_answer_command.yaml"
+              $ref: "data-dictionary/commands/reject_answer_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          $ref: "lib/responses/types/404.yaml"
+          $ref: "data-dictionary/responses/types/404.yaml"

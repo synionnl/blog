@@ -11,7 +11,7 @@ paths:
 
   /api/questions/answer_question_user_tasks/{user_task_id}:
     parameters:        
-      - $ref: "lib/parameters/user_task_id_parameter.yaml"
+      - $ref: "data-dictionary/parameters/user_task_id_parameter.yaml"
     get:
       tags:
         - answer question user tasks
@@ -23,13 +23,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "lib/responses/answer_question_user_task_response.yaml"
+                $ref: "data-dictionary/responses/answer_question_user_task_response.yaml"
         404:
-          $ref: "lib/responses/types/404.yaml"
+          $ref: "data-dictionary/responses/types/404.yaml"
 
   /api/questions/answer_question_user_tasks/{user_task_id}/answer:
     parameters:        
-      - $ref: "lib/parameters/user_task_id_parameter.yaml"
+      - $ref: "data-dictionary/parameters/user_task_id_parameter.yaml"
     put:
       tags:
         - answer question user tasks
@@ -40,9 +40,9 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "lib/commands/answer_question_command.yaml"
+              $ref: "data-dictionary/commands/answer_question_command.yaml"
       responses:
         202:
           description: Accepted
         404:
-          $ref: "lib/responses/types/404.yaml"
+          $ref: "data-dictionary/responses/types/404.yaml"

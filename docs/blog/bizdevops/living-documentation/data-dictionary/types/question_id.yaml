@@ -1,0 +1,4 @@
+title: Question id
+type: string
+format: uuid
+example: 4c0cfb14-5717-4f2e-bb76-41e2f699e775

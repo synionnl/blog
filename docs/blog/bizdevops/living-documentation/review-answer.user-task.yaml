@@ -1,0 +1,11 @@
+user-task:
+  name: Review answer
+  schema:
+    $ref: "data-dictionary/user_tasks/review_answer_user_task.yaml"
+actions:
+  - name: "Accept"
+    schema: 
+      $ref: "data-dictionary/commands/accept_answer_command.yaml"
+  - name: "Reject"
+    schema: 
+      $ref: "data-dictionary/commands/reject_answer_command.yaml"

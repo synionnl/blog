@@ -1,8 +1,0 @@
-allOf:
-  - title: question_response
-  - $ref: "types/response.yaml"
-  - properties:
-      question:
-        $ref: "../models/question.yaml"
-    required:
-      - question

@@ -1,0 +1,21 @@
+type: object
+properties:
+  user_task:
+    $ref: "types/user_task.yaml"
+  question_id:
+    $ref: "../types/question_id.yaml"
+  recieved_on:
+    $ref: "../types/recieved_on.yaml"
+  sender:
+    $ref: "../types/sender.yaml"
+  subject:
+    $ref: "../types/subject.yaml"
+  question:
+    $ref: "../types/question.yaml"
+required:
+  - user_task
+  - question_id
+  - recieved_on
+  - subject
+  - question
+  - sender

@@ -1,3 +1,0 @@
-allOf:
-  - title: end_question_command
-  - $ref: "types/command.yaml"

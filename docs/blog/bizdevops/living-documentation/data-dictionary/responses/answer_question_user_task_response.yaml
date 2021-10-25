@@ -1,0 +1,8 @@
+type: object
+properties:
+  response:
+    $ref: "types/response.yaml"
+  user_task:
+    $ref: "../user_tasks/answer_question_user_task.yaml"
+required:
+  - user_task

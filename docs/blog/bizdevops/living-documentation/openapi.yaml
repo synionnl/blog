@@ -22,29 +22,29 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "lib/commands/register_question_command.yaml"
+              $ref: "data-dictionary/commands/register_question_command.yaml"
       responses:
         201:
-          $ref: "lib/responses/types/201.yaml"
+          $ref: "data-dictionary/responses/types/201.yaml"
     get:
       tags:
         - questions
       summary: Gets a list of answer question processes.
       operationId: GetQuestions
       parameters:
-        - $ref: "lib/parameters/question_id_offset_parameter.yaml"
-        - $ref: "lib/parameters/limit_parameter.yaml"
+        - $ref: "data-dictionary/parameters/question_id_offset_parameter.yaml"
+        - $ref: "data-dictionary/parameters/limit_parameter.yaml"
       responses:
         200:
           description: OK
           content:
             application/json:
               schema:
-                $ref: "lib/responses/questions_response.yaml"
+                $ref: "data-dictionary/responses/questions_response.yaml"
 
   /api/questions/{question_id}:
     parameters:
-      - $ref: "lib/parameters/question_id_parameter.yaml"
+      - $ref: "data-dictionary/parameters/question_id_parameter.yaml"
     get:
       tags:
         - questions
@@ -56,13 +56,13 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "lib/responses/question_response.yaml"
+                $ref: "data-dictionary/responses/question_response.yaml"
         404:
-          $ref: "lib/responses/types/404.yaml"
+          $ref: "data-dictionary/responses/types/404.yaml"
           
   /api/questions/{question_id}/end:
     parameters:
-      - $ref: "lib/parameters/question_id_parameter.yaml"
+      - $ref: "data-dictionary/parameters/question_id_parameter.yaml"
     put:
       tags:
         - questions
@@ -73,7 +73,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: "lib/commands/end_question_command.yaml"
+              $ref: "data-dictionary/commands/end_question_command.yaml"
       responses:
         202:
           description: Accepted

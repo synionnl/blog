@@ -10,4 +10,4 @@ channels:
     subscribe:
       message:
         payload:
-          $ref: "lib/events/question_answered_event.yaml"
+          $ref: "data-dictionary/events/question_answered_event.yaml"

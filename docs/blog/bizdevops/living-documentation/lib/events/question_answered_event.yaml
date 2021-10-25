@@ -1,8 +1,0 @@
-allOf:
-  - title: question_answered_event
-  - $ref: "types/event.yaml"
-  - properties:
-      question_id:
-        $ref: "../types/question_id.yaml"
-    required:
-      - question_id

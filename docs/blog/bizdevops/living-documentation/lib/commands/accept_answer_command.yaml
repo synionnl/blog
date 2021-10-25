@@ -1,8 +1,0 @@
-allOf:
-  - title: accept_answer_command
-  - $ref: "types/command.yaml"
-  - properties:
-      question_id:
-        $ref: "../types/question_id.yaml"
-    required:
-      - question_id

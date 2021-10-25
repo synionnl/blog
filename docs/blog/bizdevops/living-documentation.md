@@ -1,12 +1,12 @@
 # Answer questions process
 
-## Commands & queries
-
-[Commands & queries](living-documentation/openapi.yaml)
-
 ## Process
 
 [Answer questions process](living-documentation/process.bpmn)
+
+## Commands & queries
+
+[Commands & queries](living-documentation/openapi.yaml)
 
 ## Tasks
 

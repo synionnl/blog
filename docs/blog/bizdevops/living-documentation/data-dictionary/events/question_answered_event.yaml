@@ -1,9 +1,0 @@
-type: object
-properties:
-  event:
-      $ref: "types/event.yaml"
-  question_id:
-    $ref: "../types/question_id.yaml"
-required:
-  - event
-  - question_id

@@ -28,6 +28,7 @@
     <bpmn:sequenceFlow id="Flow_0u03dmc" sourceRef="Event_AnswerRejected" targetRef="Activity_ModifyAnswer" />
     <bpmn:sequenceFlow id="Flow_1j9k9h2" sourceRef="Event_AnswerModified" targetRef="Activity_ReviewAnswer" />
     <bpmn:sequenceFlow id="Flow_1e7pkcl" sourceRef="Event_AnswerAccepted" targetRef="Activity_SendAnswer" />
+    <bpmn:sequenceFlow id="Flow_1uphheu" sourceRef="DomainEvent_QuestionAnswered" targetRef="EndEvent_QuestionAnswered" />
     <bpmn:userTask id="Activity_AnswerQuestion" name="Answer question">
       <bpmn:incoming>Flow_0yurdcf</bpmn:incoming>
       <bpmn:outgoing>Flow_0nnkh7l</bpmn:outgoing>
@@ -77,24 +78,36 @@
       <bpmn:incoming>Flow_0e9rwje</bpmn:incoming>
       <bpmn:outgoing>Flow_1j9k9h2</bpmn:outgoing>
     </bpmn:intermediateThrowEvent>
+    <bpmn:endEvent id="EndEvent_QuestionAnswered" name="Question answered">
+      <bpmn:incoming>Flow_1uphheu</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:intermediateThrowEvent id="DomainEvent_QuestionAnswered" name="Question answered">
+      <bpmn:extensionElements>
+        <zeebe:taskDefinition type="SendQuestionAnsweredEventJobV1" />
+      </bpmn:extensionElements>
+      <bpmn:incoming>Flow_1a6ag59</bpmn:incoming>
+      <bpmn:outgoing>Flow_1uphheu</bpmn:outgoing>
+      <bpmn:messageEventDefinition id="MessageEventDefinition_0d06isu" />
+    </bpmn:intermediateThrowEvent>
     <bpmn:intermediateThrowEvent id="Event_AnswerSend" name="Answer send">
       <bpmn:incoming>Flow_1yd12gh</bpmn:incoming>
       <bpmn:outgoing>Flow_1a6ag59</bpmn:outgoing>
     </bpmn:intermediateThrowEvent>
-    <bpmn:sequenceFlow id="Flow_1a6ag59" sourceRef="Event_AnswerSend" targetRef="EndEvent_QuestionAnswered" />
-    <bpmn:endEvent id="EndEvent_QuestionAnswered" name="Question answered">
-      <bpmn:incoming>Flow_1a6ag59</bpmn:incoming>
-    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1a6ag59" sourceRef="Event_AnswerSend" targetRef="DomainEvent_QuestionAnswered" />
   </bpmn:process>
   <bpmn:message id="Message_010wffl" name="Message_QuestionRecieved_V1" />
   <bpmndi:BPMNDiagram id="BPMNDiagram_1">
     <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Collaboration_AnswerQuestions">
       <bpmndi:BPMNShape id="Participant_07dcn36_di" bpmnElement="Participant_AnswerQuestions" isHorizontal="true">
-        <dc:Bounds x="160" y="170" width="1220" height="360" />
+        <dc:Bounds x="160" y="170" width="1330" height="360" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_1uphheu_di" bpmnElement="Flow_1uphheu">
+        <di:waypoint x="1348" y="267" />
+        <di:waypoint x="1423" y="267" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1a6ag59_di" bpmnElement="Flow_1a6ag59">
         <di:waypoint x="1238" y="267" />
-        <di:waypoint x="1313" y="267" />
+        <di:waypoint x="1312" y="267" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1e7pkcl_di" bpmnElement="Flow_1e7pkcl">
         <di:waypoint x="968" y="267" />
@@ -192,8 +205,20 @@
           <dc:Bounds x="908" y="292" width="85" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_00dii28_di" bpmnElement="Event_AnswerSend">
+        <dc:Bounds x="1202" y="249" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1188" y="292" width="64" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1ujxfjg_di" bpmnElement="Activity_SendAnswer">
         <dc:Bounds x="1031" y="227" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1x83jdm_di" bpmnElement="DomainEvent_QuestionAnswered">
+        <dc:Bounds x="1312" y="249" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1306" y="292" width="48" height="27" />
+        </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_13cwdfo_di" bpmnElement="Activity_ModifyAnswer">
         <dc:Bounds x="799" y="420" width="100" height="80" />
@@ -204,26 +229,20 @@
           <dc:Bounds x="590" y="485" width="82" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_00dii28_di" bpmnElement="Event_AnswerSend">
-        <dc:Bounds x="1202" y="249" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1188" y="292" width="64" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Event_06goepr_di" bpmnElement="EndEvent_QuestionAnswered">
-        <dc:Bounds x="1313" y="249" width="36" height="36" />
+        <dc:Bounds x="1423" y="249" width="36" height="36" />
         <bpmndi:BPMNLabel>
-          <dc:Bounds x="1307" y="292" width="48" height="27" />
+          <dc:Bounds x="1417" y="292" width="48" height="27" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1v3h6f0_di" bpmnElement="Participant_Client" isHorizontal="true">
-        <dc:Bounds x="160" y="90" width="1220" height="60" />
+        <dc:Bounds x="160" y="90" width="1330" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_13bheqb_di" bpmnElement="Participant_Employee" isHorizontal="true">
-        <dc:Bounds x="160" y="550" width="1220" height="60" />
+        <dc:Bounds x="160" y="550" width="1330" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_1uot4ei_di" bpmnElement="Participant_Supervisor" isHorizontal="true">
-        <dc:Bounds x="160" y="630" width="1220" height="60" />
+        <dc:Bounds x="160" y="630" width="1330" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0a6ihxj_di" bpmnElement="Flow_0a6ihxj">
         <di:waypoint x="258" y="150" />

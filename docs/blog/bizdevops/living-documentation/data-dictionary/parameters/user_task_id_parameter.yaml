@@ -1,0 +1,5 @@
+in: path
+name: user_task_id
+required: true
+schema:
+  $ref: "../user_tasks/types/user_task_id.yaml"

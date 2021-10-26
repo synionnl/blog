@@ -1,0 +1,48 @@
+openapi: 3.0.3
+
+info:
+  version: 0.0.1
+  title: Contact center service
+  description: |
+servers:
+  - url: http://localhost:9000/
+
+paths:
+
+  /api/questions/answer_question_user_tasks/{user_task_id}:
+    parameters:        
+      - $ref: "data-dictionary/parameters/user_task_id_parameter.yaml"
+    get:
+      tags:
+        - answer question user tasks
+      summary: Gets an answer question task.
+      operationId: GetAnswerQuestionTask
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "data-dictionary/responses/answer_question_user_task_response.yaml"
+        404:
+          $ref: "data-dictionary/responses/types/404.yaml"
+
+  /api/questions/answer_question_user_tasks/{user_task_id}/answer:
+    parameters:        
+      - $ref: "data-dictionary/parameters/user_task_id_parameter.yaml"
+    put:
+      tags:
+        - answer question user tasks
+      summary: Completes the answer question task by answering the question.
+      operationId: AnswerQuestion
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "data-dictionary/commands/answer_question_command.yaml"
+      responses:
+        202:
+          description: Accepted
+        404:
+          $ref: "data-dictionary/responses/types/404.yaml"

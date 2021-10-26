@@ -1,0 +1,37 @@
+type: object
+properties:
+  event_id:
+    type: string
+    format: uuid 
+    description: Unique of the event. May be used as an idemptotency key.
+    example: afa0f657-ba5b-4f6f-bc4e-6ac8dd63d76b
+  correlation_id:
+    type: string
+    format: uuid
+    description: Id of the first command which has started a chain of commands. May be empty if it's the beginning of a command chain.
+    example: 48c274d1-0976-49ca-bb70-6e3ced85b629
+  causation_id:
+    type: string
+    format: uuid
+    description: Id of the command which has caused this event to be triggered.
+    example: e62c8928-026e-493b-9ad1-1ffca6e19e61
+  origin:
+    type: object
+    description: The description if the events origin.
+    properties:
+      origin_id:
+        type: string
+        format: uuid
+        description: The id of the origin sevice.
+        example: 37702c9b-c15b-4558-8dde-aa8a3c206833
+      name:
+        type: string
+        format: uuid
+        description: The name of the origin sevice.
+        example: loan service
+    required:
+      - origin_id
+      - name
+required:
+  - event_id
+  - origin

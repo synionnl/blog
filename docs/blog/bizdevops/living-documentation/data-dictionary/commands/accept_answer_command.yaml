@@ -1,0 +1,10 @@
+type: object
+properties:
+  command:
+      $ref: "types/command.yaml"
+  question_id:
+    $ref: "../types/question_id.yaml"
+required:
+  - command
+  - question_id
+      

@@ -1,0 +1,8 @@
+type: object
+properties:
+  response:
+    $ref: "types/response.yaml"
+  question:
+    $ref: "../models/question.yaml"
+required:
+  - question

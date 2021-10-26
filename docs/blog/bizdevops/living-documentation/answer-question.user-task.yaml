@@ -1,0 +1,9 @@
+user-task:
+  name: Answer question
+  schema:
+    $ref: "data-dictionary/user_tasks/answer_question_user_task.yaml"
+actions:
+  answer:
+    name: "Answer"
+    schema: 
+      $ref: "data-dictionary/commands/answer_question_command.yaml"

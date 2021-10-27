@@ -1,12 +1,12 @@
 # Answer questions product
 
+## Interfaces
+
+[API](living-documentation/openapi.yaml)
+
 ## Process
 
 [Answer questions process](living-documentation/process.bpmn)
-
-## Commands & queries
-
-[Commands & queries](living-documentation/openapi.yaml)
 
 ## Tasks
 
@@ -14,19 +14,19 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ### Answer question task
 
-* [Commands & queries](living-documentation/answer-question-user-task.openapi.yaml)
-* [User task](living-documentation/answer-question.user-task.yaml)
+* [API](living-documentation/answer-question-user-task.openapi.yaml)
+* [UI](living-documentation/answer-question.user-task.yaml)
 
 ### Review answer task
 
-* [Commands & queries](living-documentation/review-answer-user-task.openapi.yaml)
-* [User task](living-documentation/review-answer.user-task.yaml)
+* [API](living-documentation/review-answer-user-task.openapi.yaml)
+* [UI](living-documentation/review-answer.user-task.yaml)
 * [BDD](living-documentation/review-answer-user-task.bdd.feature)
 
 ### Modify answer task
 
-* [Commands & queries](living-documentation/modify-answer-user-task.openapi.yaml)
-* [User task](living-documentation/modify-answer.user-task.yaml)
+* [API](living-documentation/modify-answer-user-task.openapi.yaml)
+* [UI](living-documentation/modify-answer.user-task.yaml)
 
 ### Send answer task
 
@@ -34,4 +34,4 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ## Business requirements
 
-[BDD tests](living-documentation/bdd.feature)
+[BDD](living-documentation/bdd.feature)

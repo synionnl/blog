@@ -1,0 +1,13 @@
+asyncapi: "2.1.0"
+
+info:
+  title: Contact center service
+  version: 0.0.1
+
+channels:
+
+  questions/answered:
+    publish:
+      message:
+        payload:
+          $ref: "data-dictionary/events/question_answered_event.yaml"

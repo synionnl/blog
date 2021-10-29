@@ -40,7 +40,12 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 
 ```plantuml
 
-class AnswerQuestion implements AggregateRoot
+interface AggregateRoot
+{
+    DomainEvent[] Commit()
+}
+
+class AnswerQuestion
 {
     {static} AnswerQuestion Create(Question question)
     void AnswerQuestion(Answer answer);
@@ -50,6 +55,17 @@ class AnswerQuestion implements AggregateRoot
     void SendAnswer(Answer answer);
     void RevokeQuestion(Revocation revocation);
 }
+
+class QuestionRecieved implements DomainEvent
+class QuestionAnswered implements DomainEvent
+class AnswerRejected implements DomainEvent
+class AnswerAccepted implements DomainEvent
+class AnswerModified implements DomainEvent
+class AnswerSent implements DomainEvent
+class QuestionRevoked implements DomainEvent
+
+AnswerQuestion .d.|> AggregateRoot
+AggregateRoot *-d- DomainEvent
 
 ```
 

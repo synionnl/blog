@@ -2,7 +2,13 @@ user-task:
   name: Modify answer
   schema:
     $ref: "data-dictionary/user_tasks/modify_answer_user_task.yaml"
+  ui:
+    user_task:
+      hidden: true
 actions:
   - name: "Modify"
     schema: 
       $ref: "data-dictionary/commands/modify_answer_command.yaml"
+    ui:
+      command:
+        hidden: true

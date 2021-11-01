@@ -1,5 +1,13 @@
 # Answer questions product
 
+The answer question product is used bij customers to ask questions by email or by using question forms on the website. 
+A question is answered be an employee. 
+Every answer is reviewed by a supervisor which either accepts or rejects an answer. 
+A rejected answer is modified by the same person who has created the answer. 
+The modified answer can be reviewed by any supervisor.
+An accepted answer is send to the client by email.
+
+
 ## Interface
 
 [API](living-documentation/openapi.yaml)
@@ -10,31 +18,29 @@
 
 ## Use cases
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-
 ### Answer question
 
-* [API](living-documentation/answer-question-user-task.openapi.yaml)
 * [UI](living-documentation/answer-question.user-task.yaml)
+* [API](living-documentation/answer-question-user-task.openapi.yaml)
 
 ### Review answer
 
-* [API](living-documentation/review-answer-user-task.openapi.yaml)
 * [UI](living-documentation/review-answer.user-task.yaml)
-* [BDD](living-documentation/review-answer-user-task.bdd.feature)
+* [Requirements](living-documentation/review-answer-user-task.bdd.feature)
+* [API](living-documentation/review-answer-user-task.openapi.yaml)
 
 ### Modify answer
 
-* [API](living-documentation/modify-answer-user-task.openapi.yaml)
 * [UI](living-documentation/modify-answer.user-task.yaml)
+* [API](living-documentation/modify-answer-user-task.openapi.yaml)
 
 ### Send answer
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+An answer is sent by email to same email address from where the question was recieved.
 
 ### Revoke question
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Any question for which the answer has not been sent can be revoked.
 
 ## Domain model
 
@@ -71,4 +77,4 @@ AggregateRoot *-d- DomainEvent
 
 ## Business requirements
 
-[BDD](living-documentation/bdd.feature)
+[Requirements](living-documentation/bdd.feature)

@@ -7,7 +7,6 @@ A rejected answer is modified by the same person who has created the answer.
 The modified answer can be reviewed by any supervisor.
 An accepted answer is send to the client by email.
 
-
 ## Interface
 
 [API](living-documentation/openapi.yaml)
@@ -54,6 +53,7 @@ interface AggregateRoot
 class AnswerQuestion
 {
     {static} AnswerQuestion Create(Question question)
+    
     void AnswerQuestion(Answer answer);
     void RejectAnswer(Rejection rejection);
     void AcceptAnswer(Acception acception);

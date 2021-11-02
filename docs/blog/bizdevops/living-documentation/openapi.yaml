@@ -60,20 +60,20 @@ paths:
         404:
           $ref: "data-dictionary/responses/types/404.yaml"
           
-  /api/questions/{question_id}/end:
+  /api/questions/{question_id}/revoke:
     parameters:
       - $ref: "data-dictionary/parameters/question_id_parameter.yaml"
     put:
       tags:
         - questions
-      summary: Ends the answer question process.
-      operationId: EndQuestion
+      summary: Revokes the question.
+      operationId: RevokeQuestion
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: "data-dictionary/commands/end_question_command.yaml"
+              $ref: "data-dictionary/commands/revoke_question_command.yaml"
       responses:
         202:
           description: Accepted

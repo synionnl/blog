@@ -76,7 +76,7 @@ class AnswerRejected implements DomainEvent
 class AnswerAccepted implements DomainEvent
 class AnswerModified implements DomainEvent
 class AnswerSent implements DomainEvent
-class QuestionAnnsweredEventSent implements DomainEvent
+class QuestionAnsweredEventSent implements DomainEvent
 class QuestionRevoked implements DomainEvent
 
 AnswerQuestion .d.|> AggregateRoot

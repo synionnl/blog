@@ -17,6 +17,18 @@ An accepted answer is send to the client by email.
 
 ## Use cases
 
+### Bot answer question
+
+Every question is first answered by the bot. The bot will always answer every question together with a probabilty percentage (0-100%). This percentage describes the chance that the answer is correctly answered: 
+
+* 0%: the answer is nit correct;
+* 100%: the answer is correct;
+
+Business requirements regarding bot answers:
+
+- Every answer with a probability of 85% and higher may be used;
+- Every answer with a probility between 85% and 95% must be reviewed;
+
 ### Answer question
 
 * [UI](living-documentation/answer-question.user-task.yaml)
@@ -54,6 +66,7 @@ class AnswerQuestion
 {
     {static} AnswerQuestion Create(Question question)
     
+    void AnswerQuestion(BotAnswer answer);
     void AnswerQuestion(Answer answer);
     void RejectAnswer(Rejection rejection);
     void AcceptAnswer(Acception acception);
@@ -63,6 +76,7 @@ class AnswerQuestion
 }
 
 class QuestionRecieved implements DomainEvent
+class QuestionAnsweredByBot implements DomainEvent
 class QuestionAnswered implements DomainEvent
 class AnswerRejected implements DomainEvent
 class AnswerAccepted implements DomainEvent

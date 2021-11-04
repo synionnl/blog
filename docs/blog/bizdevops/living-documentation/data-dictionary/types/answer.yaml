@@ -2,6 +2,6 @@ title: Answer
 type: string
 format: markdown
 example: |
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris at sapien lorem. Vestibulum arcu nisl, luctus non tristique sed, venenatis sit amet lorem. Praesent accumsan rutrum urna, non gravida nisi efficitur pharetra. Pellentesque congue lobortis eleifend. Quisque venenatis nibh id leo mattis tempus. Suspendisse pulvinar auctor lorem, quis vestibulum augue blandit ut. Morbi malesuada, orci sit amet posuere ultrices, neque dolor luctus erat, vel vehicula leo odio ut quam. Phasellus semper mi id nibh aliquet lacinia in non arcu. Integer semper pretium magna at pellentesque.
-
-  Phasellus ornare vlputate hendrerit. Morbi tincidunt tellus eget lectus egestas finibus. In ac nulla tempus, accumsan dui ac, bibendum orci. Fusce accumsan ante et sem faucibus ultricies. Phasellus sed fermentum mauris. Sed dictum elit at blandit efficitur. Duis convallis, metus eu elementum pharetra, ex erat tristique massa, quis imperdiet neque urna et ante. Cras interdum iaculis mauris ac faucibus. Quisque quis odio gravida, commodo eros eget, iaculis felis. Aliquam quis erat condimentum, facilisis arcu vitae, tincidunt risus. Donec ut mauris pulvinar, dictum ante quis, faucibus purus. Pellentesque sodales porttitor felis, eget posuere lorem imperdiet nec. Sed dignissim in mauris id facilisis. Donec egestas porta justo.
+  Your loan application has been declined. 
+  
+  You requested a loan of € 50.000,- but given your current financial situation we cannot accommodate your request.

@@ -4,8 +4,8 @@ properties:
       $ref: "types/command.yaml"
   question_id:
     $ref: "../types/question_id.yaml"
-  answer:
-    $ref: "../types/answer.yaml"
+  modification:
+    $ref: "../types/modification.yaml"
 required:
   - command
   - question_id

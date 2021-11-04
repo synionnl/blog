@@ -2,11 +2,11 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_17xhpst" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="1.0.0">
   <bpmn:collaboration id="Collaboration_AnswerQuestions">
     <bpmn:participant id="Participant_AnswerQuestions" name="Answer questions" processRef="Process_AnswerQuestions" />
-    <bpmn:participant id="Participant_Client" name="Client" />
+    <bpmn:participant id="Participant_Customer" name="Customer" />
     <bpmn:participant id="Participant_Employee" name="Employee" />
     <bpmn:participant id="Participant_Supervisor" name="Supervisor" />
-    <bpmn:messageFlow id="Flow_0a6ihxj" sourceRef="Participant_Client" targetRef="StartEvent_QuestionRecieved" />
-    <bpmn:messageFlow id="Flow_05sf32j" sourceRef="Activity_SendAnswer" targetRef="Participant_Client" />
+    <bpmn:messageFlow id="Flow_0a6ihxj" sourceRef="Participant_Customer" targetRef="StartEvent_QuestionRecieved" />
+    <bpmn:messageFlow id="Flow_05sf32j" sourceRef="Activity_SendAnswer" targetRef="Participant_Customer" />
     <bpmn:messageFlow id="Flow_0b2yijm" sourceRef="Activity_AnswerQuestion" targetRef="Participant_Employee" />
     <bpmn:messageFlow id="Flow_00b1ymf" sourceRef="Activity_ReviewAnswer" targetRef="Participant_Supervisor" />
     <bpmn:messageFlow id="Flow_1w5slre" sourceRef="Activity_ModifyAnswer" targetRef="Participant_Employee" />
@@ -265,7 +265,7 @@
           <dc:Bounds x="1341" y="505" width="87" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_1v3h6f0_di" bpmnElement="Participant_Client" isHorizontal="true">
+      <bpmndi:BPMNShape id="Participant_1v3h6f0_di" bpmnElement="Participant_Customer" isHorizontal="true">
         <dc:Bounds x="160" y="90" width="1350" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_13bheqb_di" bpmnElement="Participant_Employee" isHorizontal="true">

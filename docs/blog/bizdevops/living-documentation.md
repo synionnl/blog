@@ -2,17 +2,10 @@
 
 The answer question product is used bij customers to ask questions by email or by using question forms on the website. 
 A question is answered be an employee. 
-Every answer is reviewed by a supervisor which either accepts or rejects an answer. 
+Every answer is reviewed by a supervisor who either accepts or rejects an answer. 
 A rejected answer is modified by the same person who has created the answer. 
 The modified answer can be reviewed by any supervisor.
 An accepted answer is send to the client by email.
-
-## Interface
-
-Wens: openapi en asyncapi samenvoegen to 1 api.
-
-* [API](living-documentation/openapi.yaml)
-* [Async API](living-documentation/publish-asyncapi.yaml)
 
 ## Process
 
@@ -42,11 +35,16 @@ An answer is sent by email to same email address from where the question was rec
 
 ### Send question answered event
 
-* [API](living-documentation/subscribe-asyncapi.yaml)
+[Async API](living-documentation/publish-asyncapi.yaml)
 
 ### Revoke question
 
 Any question for which the answer has not been sent can be revoked.
+
+## Interface
+
+* [API](living-documentation/openapi.yaml)
+* [Async API](living-documentation/subscribe-asyncapi.yaml)
 
 ## Domain model
 

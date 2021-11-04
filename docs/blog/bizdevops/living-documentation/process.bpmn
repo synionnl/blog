@@ -2,16 +2,17 @@
 <bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:zeebe="http://camunda.org/schema/zeebe/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_17xhpst" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.11.1" modeler:executionPlatform="Camunda Cloud" modeler:executionPlatformVersion="1.0.0">
   <bpmn:collaboration id="Collaboration_AnswerQuestions">
     <bpmn:participant id="Participant_AnswerQuestions" name="Answer questions" processRef="Process_AnswerQuestions" />
-    <bpmn:participant id="Participant_Client" name="Client" />
+    <bpmn:participant id="Participant_Customer" name="Customer" />
     <bpmn:participant id="Participant_Employee" name="Employee" />
     <bpmn:participant id="Participant_Supervisor" name="Supervisor" />
-    <bpmn:participant id="Participant_0uywkvs" name="Bot" />
-    <bpmn:messageFlow id="Flow_0a6ihxj" sourceRef="Participant_Client" targetRef="StartEvent_QuestionRecieved" />
-    <bpmn:messageFlow id="Flow_05sf32j" sourceRef="Activity_SendAnswer" targetRef="Participant_Client" />
+    <bpmn:participant id="Participant_Bot" name="Bot" />
+    <bpmn:messageFlow id="Flow_0a6ihxj" sourceRef="Participant_Customer" targetRef="StartEvent_QuestionRecieved" />
+    <bpmn:messageFlow id="Flow_05sf32j" sourceRef="Activity_SendAnswer" targetRef="Participant_Customer" />
     <bpmn:messageFlow id="Flow_0b2yijm" sourceRef="Activity_AnswerQuestion" targetRef="Participant_Employee" />
     <bpmn:messageFlow id="Flow_00b1ymf" sourceRef="Activity_ReviewAnswer" targetRef="Participant_Supervisor" />
     <bpmn:messageFlow id="Flow_1w5slre" sourceRef="Activity_ModifyAnswer" targetRef="Participant_Employee" />
-    <bpmn:messageFlow id="Flow_0sv57of" sourceRef="Activity_AnswerQuestionByBot" targetRef="Participant_0uywkvs" />
+    <bpmn:messageFlow id="Flow_0sv57of" sourceRef="Activity_AnswerQuestionByBot" />
+    <bpmn:messageFlow id="Flow_1k5y3bc" sourceRef="Activity_AnswerQuestionByBot" targetRef="Participant_Bot" />
   </bpmn:collaboration>
   <bpmn:process id="Process_AnswerQuestions" name="Answer questions" isExecutable="true">
     <bpmn:sequenceFlow id="Flow_0yurdcf" sourceRef="StartEvent_QuestionRecieved" targetRef="Activity_AnswerQuestionByBot" />
@@ -143,6 +144,47 @@
       <bpmndi:BPMNShape id="Participant_07dcn36_di" bpmnElement="Participant_AnswerQuestions" isHorizontal="true">
         <dc:Bounds x="160" y="170" width="1540" height="530" />
       </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0tx83ka_di" bpmnElement="Flow_0tx83ka">
+        <di:waypoint x="1187" y="240" />
+        <di:waypoint x="1401" y="240" />
+        <di:waypoint x="1401" y="327" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0se0qxs_di" bpmnElement="Flow_ReviewBotAnswerYes">
+        <di:waypoint x="951" y="265" />
+        <di:waypoint x="951" y="327" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="957" y="283" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1iody7s_di" bpmnElement="Flow_ReviewBotAnswerNo">
+        <di:waypoint x="976" y="240" />
+        <di:waypoint x="1151" y="240" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1042" y="222" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0c1dbhl_di" bpmnElement="Flow_0c1dbhl">
+        <di:waypoint x="558" y="240" />
+        <di:waypoint x="926" y="240" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0t5zqka_di" bpmnElement="Flow_UseBotAnswerYes">
+        <di:waypoint x="540" y="342" />
+        <di:waypoint x="540" y="258" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="546" y="283" width="19" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1uxybke_di" bpmnElement="Flow_UseBotAnswerNo">
+        <di:waypoint x="565" y="367" />
+        <di:waypoint x="651" y="367" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="592" y="349" width="15" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nfm1w5_di" bpmnElement="Flow_1nfm1w5">
+        <di:waypoint x="440" y="367" />
+        <di:waypoint x="515" y="367" />
+      </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="Flow_1a6ag59_di" bpmnElement="Flow_1a6ag59">
         <di:waypoint x="1558" y="367" />
         <di:waypoint x="1633" y="367" />
@@ -200,47 +242,6 @@
       <bpmndi:BPMNEdge id="Flow_0yurdcf_di" bpmnElement="Flow_0yurdcf">
         <di:waypoint x="276" y="367" />
         <di:waypoint x="340" y="367" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1nfm1w5_di" bpmnElement="Flow_1nfm1w5">
-        <di:waypoint x="440" y="367" />
-        <di:waypoint x="515" y="367" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1uxybke_di" bpmnElement="Flow_UseBotAnswerNo">
-        <di:waypoint x="565" y="367" />
-        <di:waypoint x="651" y="367" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="592" y="349" width="15" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0t5zqka_di" bpmnElement="Flow_UseBotAnswerYes">
-        <di:waypoint x="540" y="342" />
-        <di:waypoint x="540" y="258" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="546" y="283" width="19" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0c1dbhl_di" bpmnElement="Flow_0c1dbhl">
-        <di:waypoint x="558" y="240" />
-        <di:waypoint x="926" y="240" />
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_1iody7s_di" bpmnElement="Flow_ReviewBotAnswerNo">
-        <di:waypoint x="976" y="240" />
-        <di:waypoint x="1151" y="240" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1042" y="222" width="15" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0se0qxs_di" bpmnElement="Flow_ReviewBotAnswerYes">
-        <di:waypoint x="951" y="265" />
-        <di:waypoint x="951" y="327" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="957" y="283" width="19" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0tx83ka_di" bpmnElement="Flow_0tx83ka">
-        <di:waypoint x="1187" y="240" />
-        <di:waypoint x="1401" y="240" />
-        <di:waypoint x="1401" y="327" />
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNShape id="Event_1rqpqs2_di" bpmnElement="IntermedEvent_QuestionAnsweredByBot">
         <dc:Bounds x="522" y="222" width="36" height="36" />
@@ -323,18 +324,6 @@
           <dc:Bounds x="910" y="585" width="82" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Gateway_1mdkqkh_di" bpmnElement="Gateway_ReviewBotAnswer" isMarkerVisible="true">
-        <dc:Bounds x="926" y="215" width="50" height="50" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="911" y="185" width="81" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Event_0k63gzg_di" bpmnElement="Event_BotAnswerAccepted">
-        <dc:Bounds x="1151" y="222" width="36" height="36" />
-        <bpmndi:BPMNLabel>
-          <dc:Bounds x="1127" y="265" width="85" height="14" />
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Activity_1o9a0g3_di" bpmnElement="Activity_0jrr76e" isExpanded="true">
         <dc:Bounds x="1410" y="510" width="230" height="130" />
       </bpmndi:BPMNShape>
@@ -354,7 +343,19 @@
           <dc:Bounds x="1527" y="595" width="87" height="14" />
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_1v3h6f0_di" bpmnElement="Participant_Client" isHorizontal="true">
+      <bpmndi:BPMNShape id="Gateway_1mdkqkh_di" bpmnElement="Gateway_ReviewBotAnswer" isMarkerVisible="true">
+        <dc:Bounds x="926" y="215" width="50" height="50" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="911" y="185" width="81" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_0k63gzg_di" bpmnElement="Event_BotAnswerAccepted">
+        <dc:Bounds x="1151" y="222" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="1127" y="265" width="85" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Participant_1v3h6f0_di" bpmnElement="Participant_Customer" isHorizontal="true">
         <dc:Bounds x="160" y="90" width="1540" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="Participant_13bheqb_di" bpmnElement="Participant_Employee" isHorizontal="true">
@@ -363,8 +364,8 @@
       <bpmndi:BPMNShape id="Participant_1uot4ei_di" bpmnElement="Participant_Supervisor" isHorizontal="true">
         <dc:Bounds x="160" y="800" width="1540" height="60" />
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="Participant_0uywkvs_di" bpmnElement="Participant_0uywkvs" isHorizontal="true">
-        <dc:Bounds x="160" y="879" width="1540" height="60" />
+      <bpmndi:BPMNShape id="Participant_1vp9t4m_di" bpmnElement="Participant_Bot" isHorizontal="true">
+        <dc:Bounds x="160" y="880" width="1540" height="60" />
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="Flow_0a6ihxj_di" bpmnElement="Flow_0a6ihxj">
         <di:waypoint x="258" y="150" />
@@ -386,9 +387,9 @@
         <di:waypoint x="1169" y="600" />
         <di:waypoint x="1169" y="720" />
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="Flow_0sv57of_di" bpmnElement="Flow_0sv57of">
+      <bpmndi:BPMNEdge id="Flow_1k5y3bc_di" bpmnElement="Flow_1k5y3bc">
         <di:waypoint x="390" y="407" />
-        <di:waypoint x="390" y="879" />
+        <di:waypoint x="390" y="880" />
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>

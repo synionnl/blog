@@ -2,14 +2,10 @@
 
 The answer question product is used bij customers to ask questions by email or by using question forms on the website. 
 A question is answered be an employee. 
-Every answer is reviewed by a supervisor which either accepts or rejects an answer. 
+Every answer is reviewed by a supervisor who either accepts or rejects an answer. 
 A rejected answer is modified by the same person who has created the answer. 
 The modified answer can be reviewed by any supervisor.
 An accepted answer is send to the client by email.
-
-## Interface
-
-[API](living-documentation/openapi.yaml)
 
 ## Process
 
@@ -21,13 +17,13 @@ An accepted answer is send to the client by email.
 
 Every question is first answered by the bot. The bot will always answer every question together with a probabilty percentage (0-100%). This percentage describes the chance that the answer is correctly answered: 
 
-* 0%: the answer is nit correct;
+* 0%: the answer is not correct;
 * 100%: the answer is correct;
 
 Business requirements regarding bot answers:
 
 - Every answer with a probability of 85% and higher may be used;
-- Every answer with a probility between 85% and 95% must be reviewed;
+- Every answer with a probability between 85% and 95% must be reviewed;
 
 ### Answer question
 
@@ -52,6 +48,10 @@ An answer is sent by email to same email address from where the question was rec
 ### Revoke question
 
 Any question for which the answer has not been sent can be revoked.
+
+## Interface
+
+[API](living-documentation/openapi.yaml)
 
 ## Domain model
 

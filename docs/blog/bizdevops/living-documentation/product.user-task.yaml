@@ -1,0 +1,7 @@
+actions:
+  - name: "Ask question"
+    schema: 
+      $ref: "data-dictionary/commands/register_question_command.yaml"
+    ui:
+      command:
+        hidden: true

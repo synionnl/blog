@@ -4,12 +4,12 @@ properties:
       $ref: "types/command.yaml"
   question_id:
     $ref: "../types/question_id.yaml"
+  sender:
+    $ref: "../types/sender.yaml"
   subject:
     $ref: "../types/subject.yaml"
   question:
     $ref: "../types/question.yaml"
-  sender:
-    $ref: "../types/sender.yaml"
 required:
   - command
   - question_id

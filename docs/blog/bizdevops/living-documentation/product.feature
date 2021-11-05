@@ -1,3 +1,1 @@
 Feature: Answer questions product
-
-    

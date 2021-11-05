@@ -7,6 +7,11 @@ A rejected answer is modified by the same person who has created the answer.
 The modified answer can be reviewed by any supervisor.
 An accepted answer is send to the client by email.
 
+
+* [UI](living-documentation/product.user-task.yaml)
+* [Acceptance criteria](living-documentation/product.feature)
+* [API](living-documentation/product.openapi.yaml)
+
 ## Process
 
 * [Process](living-documentation/process.bpmn)
@@ -24,18 +29,18 @@ The bot will always answer every question together with a probabilty percentage 
 ### Answer question
 
 * [UI](living-documentation/answer-question.user-task.yaml)
-* [API](living-documentation/answer-question-user-task.openapi.yaml)
+* [API](living-documentation/answer-question.openapi.yaml)
 
 ### Review answer
 
 * [UI](living-documentation/review-answer.user-task.yaml)
-* [Acceptance criteria](living-documentation/review-answer-user-task.bdd.feature)
-* [API](living-documentation/review-answer-user-task.openapi.yaml)
+* [Acceptance criteria](living-documentation/review-answer.feature)
+* [API](living-documentation/review-answer.openapi.yaml)
 
 ### Modify answer
 
 * [UI](living-documentation/modify-answer.user-task.yaml)
-* [API](living-documentation/modify-answer-user-task.openapi.yaml)
+* [API](living-documentation/modify-answer.openapi.yaml)
 
 ### Send answer
 
@@ -44,10 +49,6 @@ An answer is sent by email to same email address from where the question was rec
 ### Revoke question
 
 Any question for which the answer has not been sent can be revoked.
-
-## Interface
-
-[API](living-documentation/product.openapi.yaml)
 
 ## Domain model
 
@@ -84,7 +85,3 @@ AnswerQuestion .d.|> AggregateRoot
 AggregateRoot *-d- DomainEvent
 
 ```
-
-## Business requirements
-
-[Requirements](living-documentation/bdd.feature)

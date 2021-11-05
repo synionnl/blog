@@ -9,21 +9,17 @@ An accepted answer is send to the client by email.
 
 ## Process
 
-[Process](living-documentation/process.bpmn)
+* [Process](living-documentation/process.bpmn)
+* [Acceptance criteria](living-documentation/process.feature)
 
 ## Use cases
 
 ### Bot answer question
 
-Every question is first answered by the bot. The bot will always answer every question together with a probabilty percentage (0-100%). This percentage describes the chance that the answer is correctly answered: 
+The bot will always answer every question together with a probabilty percentage (0-100%). This percentage describes the chance that the answer is correctly answered: 
 
 * 0%: the answer is not correct;
 * 100%: the answer is correct;
-
-Business requirements regarding bot answers:
-
-- Every answer with a probability of 85% and higher may be used;
-- Every answer with a probability between 85% and 95% must be reviewed;
 
 ### Answer question
 
@@ -33,7 +29,7 @@ Business requirements regarding bot answers:
 ### Review answer
 
 * [UI](living-documentation/review-answer.user-task.yaml)
-* [Requirements](living-documentation/review-answer-user-task.bdd.feature)
+* [Acceptance criteria](living-documentation/review-answer-user-task.bdd.feature)
 * [API](living-documentation/review-answer-user-task.openapi.yaml)
 
 ### Modify answer
@@ -51,7 +47,7 @@ Any question for which the answer has not been sent can be revoked.
 
 ## Interface
 
-[API](living-documentation/openapi.yaml)
+[API](living-documentation/product.openapi.yaml)
 
 ## Domain model
 

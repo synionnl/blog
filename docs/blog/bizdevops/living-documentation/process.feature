@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 Feature: Process
 
     Scenario: Do not use bot answer
@@ -15,6 +14,3 @@ Feature: Process
         Given an asked question            
         When the bot answers the question with a probaility of "95%" or higher
         Then the send answer task must be activated
-=======
-Feature: Process
->>>>>>> main

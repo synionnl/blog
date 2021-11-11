@@ -50,7 +50,7 @@ An answer is sent by email to same email address from where the question was rec
 
 Any question for which the answer has not been sent can be revoked.
 
-## Domain model
+## Class diagram
 
 ```plantuml
 

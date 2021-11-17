@@ -1,12 +1,13 @@
 # Answer questions product
 
+## Product
+
 The answer question product is used bij customers to ask questions by email or by using question forms on the website. 
 A question is answered be an employee. 
 Every answer is reviewed by a supervisor who either accepts or rejects an answer. 
 A rejected answer is modified by the same person who has created the answer. 
 The modified answer can be reviewed by any supervisor.
 An accepted answer is send to the client by email.
-
 
 * [UI](living-documentation/product.user-task.yaml)
 * [Acceptance criteria](living-documentation/product.feature)

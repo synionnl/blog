@@ -1,6 +1,6 @@
 Feature: Review answer use case
 
-    Scenario: You may not review your own answer
+    Scenario: May not review own answer
         Given a review anwser task
         And "john" is the person who has created the answer
         And "john" is the user
@@ -8,7 +8,7 @@ Feature: Review answer use case
         Then an authorization exception must be thrown
         And the task should not be claimed
 
-    Scenario: You may not delegate the review answer task to the creator 
+    Scenario: May not delegate review task to the person who answered the question
         Given a review answer task
         And "john" is the person who has created the answer
         And "julia" is the person who has claimed the task

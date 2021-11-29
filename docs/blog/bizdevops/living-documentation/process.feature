@@ -8,7 +8,7 @@ Feature: Process
 
     Scenario: Use bot answer
         Given an asked question            
-        When the bot answers the question with a probaility of greator or equal then 85%
+        When the bot answers the question with a probaility of greater or equal then 85%
         And the gateway "Gateway_UseBotAnswer" is executed
         Then the flow "Flow_UseBotAnswerYes" must be activated
 

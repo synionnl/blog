@@ -22,7 +22,7 @@ An accepted answer is send to the client by email.
 
 ### Bot answer question
 
-The bot will always answer every question together with a probabilty percentage (0-100%). This percentage describes the chance that the answer is correctly answered: 
+The bot will always answer every question together with a probability percentage (0-100%). This percentage describes the chance that the answer is correctly answered: 
 
 * 0%: the answer is not correct;
 * 100%: the answer is correct;

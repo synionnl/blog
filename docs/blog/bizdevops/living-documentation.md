@@ -45,7 +45,7 @@ The bot will always answer every question together with a probabilty percentage 
 
 ### Send answer
 
-An answer is sent by email to same email address from where the question was recieved.
+An answer is sent by email to same email address from which the question was received.
 
 ### Revoke question
 

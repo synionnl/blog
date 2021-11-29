@@ -38,7 +38,7 @@ An accepted answer is send to the client by email.
 
 ### Send answer
 
-An answer is sent by email to same email address from where the question was recieved.
+An answer is sent by email to same email address from which the question was received.
 
 ### Revoke question
 

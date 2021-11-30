@@ -1,38 +1,15 @@
 Feature: Process
 
-Scenario: Do not use bot answer
-  Given an asked question            
-    And the bot answers the question with a probability smaller than 85%
-   When the gateway with id "Gateway_UseBotAnswer" is executed
-   Then the flow with id "Flow_UseBotAnswerNo" must be activated
+Scenario Outline: Gateway tests
 
-Scenario: Use bot answer
-  Given an asked question            
-    And the bot answers the question with a probability greater or equal to 85%
-   When the gateway with id "Gateway_UseBotAnswer" is executed
-   Then the flow with id "Flow_UseBotAnswerYes" must be activated
+  Given process "https://raw.githubusercontent.com/synionnl/website/4549e240500b5543addf1ff06e274fa4ed177e05/docs/blog/bizdevops/living-documentation/process.feature"
+    And process has state "<state>"
+   When the gateway with id "<gateway>" is executed
+   Then the flow with id "<flow>" must be activated
 
-Scenario: Review bot answer
-  Given an asked question            
-    And the bot answers the question with a probability greater or equal to 85% and smaller than 95%
-   When the gateway with id "Gateway_ReviewBotAnswer" is executed
-   Then the flow with id "Flow_ReviewBotAnswerYes" must be activated
-
-Scenario: Do not review bot answer
-  Given an asked question            
-    And the bot answers the question with a probability greater or equal to 95%
-   When the gateway with id "Gateway_ReviewBotAnswer" is executed
-   Then the flow with id "Flow_ReviewBotAnswerNo" must be activated
-
-Scenario Outline: Generic test
-
-  Given process has state <state>
-   When the gateway with id <gateway> is executed
-   Then the flow wih id <flow> must be activated
-
-  Examples: 
+  Examples: Scenarios
     | state                            | gateway                 | flow                    | 
     | { AnswerCorrectProbability: 84 } | Gateway_UseBotAnswer    | Flow_UseBotAnswerNo     | 
     | { AnswerCorrectProbability: 85 } | Gateway_UseBotAnswer    | Flow_UseBotAnswerYes    | 
     | { AnswerCorrectProbability: 94 } | Gateway_ReviewBotAnswer | Flow_ReviewBotAnswerYes | 
-    | { AnswerCorrectProbability: 95 } | Gateway_ReviewBotAnswer | Flow_ReviewBotAnswerNo  |
+    | { AnswerCorrectProbability: 95 } | Gateway_ReviewBotAnswer | Flow_ReviewBotAnswerNo  | 

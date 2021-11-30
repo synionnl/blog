@@ -1,0 +1,23 @@
+- scenario: Do not use bot answer
+  state:
+    AnswerCorrectProbability: 84
+  gateway: Gateway_UseBotAnswer
+  expected_flow: Flow_UseBotAnswerNo
+
+- scenario: Use bot answer
+  state:
+    AnswerCorrectProbability: 85
+  gateway: Gateway_UseBotAnswer
+  expected_flow: Flow_UseBotAnswerYes
+
+- scenario: Review bot answer
+  state:
+    AnswerCorrectProbability: 94
+  gateway: Gateway_ReviewBotAnswer
+  expected_flow: Flow_ReviewBotAnswerYes
+
+- scenario: Send bot answer
+  state:
+    AnswerCorrectProbability: 95
+  gateway: Gateway_ReviewBotAnswer
+  expected_flow: Flow_ReviewBotAnswerNo

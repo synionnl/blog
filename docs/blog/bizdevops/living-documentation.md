@@ -9,9 +9,8 @@ A rejected answer is modified by the same person who has created the answer.
 The modified answer can be reviewed by any supervisor.
 An accepted answer is send to the client by email.
 
-* [UI](living-documentation/product.user-task.yaml)
-* [Acceptance criteria](living-documentation/product.feature)
 * [API](living-documentation/product.openapi.yaml)
+* [KPI](living-documentation/product.feature)
 
 ## Process
 

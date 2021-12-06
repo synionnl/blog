@@ -48,7 +48,7 @@
     </bpmn:startEvent>
     <bpmn:serviceTask id="Activity_AnswerQuestionByBot" name="Answer question">
       <bpmn:extensionElements>
-        <zeebe:taskDefinition type="AnswerQuestion_V1" />
+        <zeebe:taskDefinition type="AnswerQuestionJobV1" />
       </bpmn:extensionElements>
       <bpmn:incoming>Flow_0yurdcf</bpmn:incoming>
       <bpmn:outgoing>Flow_1nfm1w5</bpmn:outgoing>

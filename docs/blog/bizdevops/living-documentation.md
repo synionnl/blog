@@ -20,6 +20,13 @@ An accepted answer is send to the client by email.
 
 ## Use cases
 
+### Bot answer question
+
+The bot will always answer every question together with a probability percentage (0-100%). This percentage describes the chance that the answer is correctly answered: 
+
+* 0%: the answer is not correct;
+* 100%: the answer is correct;
+
 ### Answer question
 
 * [UI](living-documentation/answer-question.user-task.yaml)
@@ -44,7 +51,6 @@ An answer is sent by email to same email address from which the question was rec
 
 Any question for which the answer has not been sent can be revoked.
 
-
 ## Class diagram
 
 ```plantuml
@@ -58,6 +64,7 @@ class AnswerQuestion
 {
     {static} AnswerQuestion Create(Question question)
     
+    void AnswerQuestion(BotAnswer answer);
     void AnswerQuestion(Answer answer);
     void RejectAnswer(Rejection rejection);
     void AcceptAnswer(Acception acception);
@@ -67,6 +74,7 @@ class AnswerQuestion
 }
 
 class QuestionRecieved implements DomainEvent
+class QuestionAnsweredByBot implements DomainEvent
 class QuestionAnswered implements DomainEvent
 class AnswerRejected implements DomainEvent
 class AnswerAccepted implements DomainEvent

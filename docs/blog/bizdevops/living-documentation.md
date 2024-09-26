@@ -11,6 +11,7 @@ An accepted answer is send to the client by email.
 
 * [Dashboard](living-documentation/product.dashboard.yml)
 * [API](living-documentation/product.openapi.yaml)
+* [Async API](living-documentation/subscribe-asyncapi.yaml)
 
 
 ## Process
@@ -40,6 +41,10 @@ An accepted answer is send to the client by email.
 
 An answer is sent by email to same email address from which the question was received.
 
+### Send question answered event
+
+[Async API](living-documentation/publish-asyncapi.yaml)
+
 ### Revoke question
 
 Any question for which the answer has not been sent can be revoked.
@@ -63,6 +68,7 @@ class AnswerQuestion
     void AcceptAnswer(Acception acception);
     void ModifyAnswer(Modification modification);
     void SendAnswer(Answer answer);
+    void SendQuestionAnsweredEvent(Event event);
     void RevokeQuestion(Revocation revocation);
 }
 
@@ -72,6 +78,7 @@ class AnswerRejected implements DomainEvent
 class AnswerAccepted implements DomainEvent
 class AnswerModified implements DomainEvent
 class AnswerSent implements DomainEvent
+class QuestionAnsweredEventSent implements DomainEvent
 class QuestionRevoked implements DomainEvent
 
 AnswerQuestion .d.|> AggregateRoot

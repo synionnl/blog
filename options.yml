@@ -1,0 +1,67 @@
+locale: nl
+git:
+  type: github
+  urlTemplate: https://github.com/{{{repository}}}/blob/{{{branch}}}
+hosting:
+  type: azure-static-web-app
+page:
+  googleFont: 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap'
+email:
+  googleFont: 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap'
+  from:
+    name: Piet de Vries
+    email: afa0f657-ba5b-4f6f-bc4e-6ac8dd63d76b@zwolle.waarborgfonds.sbn.nl
+  to:
+    email: kredietverlening@zwolle.nl
+  subject: Geen onderwerp gevonden, geef een onderwerp op!
+  salutation: Beste lezer,
+  signature: Piet de Vries
+  footer: |
+    <address>
+        Waarborgfonds Saneringskredieten<br>
+        Koningin Wilhelminalaan 5<br>
+        3527 LA Utrecht
+    </address>
+    <p>
+        KvK: 59083441<br>
+        BTW: NL37INGB0674629892
+    </p>
+message:
+  googleFont: 'https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap'
+  to: |
+    Kredietbank Zwolle<br>
+    t.a.v. afdeling kredietverlening<br>
+    Postbus 100070<br>
+    8000 GA Zwolle
+  date: Utrecht, 1 januari 2022
+  salutation: Beste heer, mevrouw,
+  signature:
+    Waarborgfonds Saneringskredieten,
+
+    namens deze,
+
+
+
+
+    Gerrit Jan Schep
+
+
+    Bestuurder Stichting Bemiddeling en Fondsbeheer
+  footer: |
+    <address>
+        Waarborgfonds Saneringskredieten<br>
+        Koningin Wilhelminalaan 5<br>
+        3527 LA Utrecht
+    </address>
+    <p>
+        KvK: 59083441<br>
+        BTW: NL37INGB0674629892
+    </p>
+  references:
+    - name: Onderwerp
+      value: Geen onderwerp gevonden, geef een onderwerp op!
+    - name: Uw referentie
+      value: 5461135-1
+    - name: Onze referentie
+    - name: Gemeente
+      value: Gemeente Zwolle

@@ -25,7 +25,7 @@ jobs:
 
       - name: Install md-docs
         run: |
-          npm i @biz-dev-ops/md-docs@latest -g
+          npm i @biz-dev-ops/md-docs@latest
 
       - name: Install PrinceXml
         run: |
@@ -34,7 +34,8 @@ jobs:
           node node_modules/@biz-dev-ops/md-docs/node_modules/prince/prince-npm.js install
 
       - name: Build
-        run: md-docs -f
+        run: |
+          node node_modules/@biz-dev-ops/md-docs/bin/index.js -f
 
       - name: Deploy
         id: deploy

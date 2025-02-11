@@ -2,17 +2,17 @@
 
 I see a lot of companies struggling in delivering technical products which meet business expectations. With BizDevOps the goal is to restore the natural order: technical product development driven by business intent.
 
-![BizDevOps](bizdevops.png?align=center)
+![BizDevOps](./bizdevops.png?align=center)
 
 I have almost twenty years experience in digital product development where I have learned a lot by making mistakes. Over the years I have discovered that some mistakes are more stubborn than others. These mistakes have one thing in common: we failed to deliver what the customer really needed.
 
 Interpretation of an intent is very difficult. First you have to figure out what the real intent is (the question behind the question) and then several people will translate the outcomes into a product. All these layers of translation add to the risk of misinterpretation, which in turn may result in a product which does not meet customer expectation despite all good intentions.
 
-![copyright www.projectcartoon.com under the Creative Commons Attribution 3.0 Unported License](projectcartoon.compdf.png?align=center)
+![copyright www.projectcartoon.com under the Creative Commons Attribution 3.0 Unported License](./projectcartoon.compdf.png?align=center)
 
-![drawing game: draw what you feel, copyright youtube.com](drawing-game-2.png)
+![drawing game: draw what you feel, copyright youtube.com](./drawing-game-2.png)
 
-![whisper game: pass along the words](whisper-game.png)
+![whisper game: pass along the words](./whisper-game.png)
 
 
 ## WHAT vs HOW
@@ -31,7 +31,7 @@ With living documentation the business is responsible for documenting its busine
 
 > A domain delivers one or more products which are consumed via an interface and realized with business processes. Business processes use data to operate and trigger applications to fulfill use cases.
 
-![anatomy of a business domain](business-domain.svg?align=right)
+![anatomy of a business domain](./business-domain.svg?align=right)
 
 Because these interfaces are business interfaces rather than technical interfaces it is only logical that the business owns them. With living documentation the business is responsible for the documentation of these business interfaces. The engineers use the documented interfaces to generate code. The main living documentation citizens are:
 Business processes  in BPMN format;
@@ -52,7 +52,7 @@ The living documentation is written in plain text and maintained in a .git repo
 
 The plaint text documentation is automatically transformed into a user friendly website. This website is accessible for the entire organization and shows the current state of the business domain as well as the features being worked on.
 
-[![living process documentation example](living-documentation.png)](living-documentation.md)
+[![living process documentation example](./living-documentation.png)](./living-documentation.html)
 
 Because the living documentation is used by engineering to generate code it is always up to date. The generated code explicitly communicates business intent and business language: fully aligning business and engineering.
 

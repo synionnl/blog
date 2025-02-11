@@ -1,0 +1,30 @@
+:root {
+    /* Theming */
+    --color-brand-base: var(--synion-red);
+    --color-brand-light: var(--synion-red);
+    --text-color-heading: var(--synion-red);
+}
+
+header .logo {
+    left: auto;
+}
+
+header .logo img {
+    height: 60pt;
+}
+
+footer .contact {
+    color: var(--synion-red);
+}
+
+@media print {
+    @page :first {
+        @top-left-corner {
+            content: element(empty); /* reset hack for element */
+        }
+
+        @top-right {
+            content: element(firstPageHeader);
+        }
+    }
+}

@@ -2,7 +2,7 @@
 
 Service orchestration is an important part of the micro service puzzle. With Zeebe and the [zb-client-bootstrap extension for .Net](https://github.com/camunda-community-hub/zeebe-client-csharp-bootstrap) your life as a .Net micro service developer just got a lot easier.
 
-![Zeebe and .Net](teaser.png?aling=center)
+![Zeebe and .Net](./teaser.png?aling=center)
 
 ## Choreography v.s. Orchestration
 
@@ -61,7 +61,7 @@ public interface IAsyncJobHandler<TJob>  where TJob : AbstractJob
 
 ### Create a process:
 
-[simple process](simple-process.bpmn)
+[simple process](./simple-process.bpmn)
 
 ### And lastly, add your job and job handler:
 
@@ -87,7 +87,7 @@ This is it. The task of type ‘DoSomething’ in any process instance is now ha
 
 But there is more. Processes can make decisions based on data. Data can be added as variables to the process instance. Typically this information is added when completing a job. Therefore it is also possible to complete a job with a response. This is done by adding a second type to the `IAsyncJobHandler<TJob, TResponse>`. The response is automatically serialized and passed to Zeebe when completing the job.
 
-[simple process with variable](simple-process-with-variable.bpmn)
+[simple process with variable](./simple-process-with-variable.bpmn)
 
 ```csharp
 class DoSomethingHandler : IAsyncJobHandler<DoSomething, Response>
@@ -95,7 +95,7 @@ class DoSomethingHandler : IAsyncJobHandler<DoSomething, Response>
     public async Task<Response> HandleJob(DoSomething job, CancellationToken cancellationToken)
     {
         await Usecase.ExecuteAsync();
-        return  new Response() 
+        return  new Response()
         {
             Property = job.Key % 2 == 0
         };
@@ -108,7 +108,7 @@ class DoSomething : AbstractJob
     { }
 }
 
-class Response 
+class Response
 {
     public bool Property { get; set; }
 }
@@ -120,7 +120,7 @@ Property of type boolean is automatically added to the process instance making i
 
 Exceptions are not only technical; they also live in the business domain. Therefore it is possible to throw business exceptions inside the job handler resulting in an error automatically being send to Zeebe. A business exception is any exception which extends JobException. Business exceptions can be handled in the process by modelling an catch event on the task boundry.
 
-[simple process with exception](simple-process-with-exception.bpmn)
+[simple process with exception](./simple-process-with-exception.bpmn)
 
 ```csharp
 class DoSomethingHandler : IAsyncJobHandler<DoSomething, Response>
@@ -128,7 +128,7 @@ class DoSomethingHandler : IAsyncJobHandler<DoSomething, Response>
     public async Task<Response> HandleJob(DoSomething job, CancellationToken cancellationToken)
     {
         await Usecase.ExecuteAsync();
-        return  new Response() 
+        return  new Response()
         {
             Property = job.Key % 2 == 0
         };
@@ -141,7 +141,7 @@ class DoSomething : AbstractJob
     { }
 }
 
-class Response 
+class Response
 {
     public bool Property { get; set; }
 }

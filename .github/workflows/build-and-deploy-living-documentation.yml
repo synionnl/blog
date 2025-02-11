@@ -34,7 +34,6 @@ jobs:
           node node_modules/@biz-dev-ops/md-docs/node_modules/prince/prince-npm.js install
 
       - name: Build
-        working-directory: tests
         run: |
           node ../bin/index.js -f
 

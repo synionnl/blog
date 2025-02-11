@@ -35,7 +35,7 @@ jobs:
 
       - name: Build
         run: |
-          node ../bin/index.js -f
+          node ./bin/index.js -f
 
       - name: Deploy
         id: deploy
